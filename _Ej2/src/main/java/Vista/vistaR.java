@@ -14,6 +14,7 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.border.LineBorder;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.JScrollBar;
 
 public class vistaR extends JFrame {
 
@@ -61,10 +62,10 @@ public class vistaR extends JFrame {
 		
 		table = new JTable();
 		table.setRowSelectionAllowed(false);
-		table.setVisible(false);
+		table.setVisible(true);
 		contentPane.add(table);
 		table.setBorder(new LineBorder(new Color(0, 0, 0)));
-		table.setBounds(51, 184, 536, 224);
+		table.setBounds(38, 177, 557, 224);
 		table.setModel(new DefaultTableModel(
 			new Object[][] {
 				{null, null, null, null, null, null},
@@ -85,17 +86,6 @@ public class vistaR extends JFrame {
 			new String[] {
 				"1", "2", "3", "4", "5", "6"
 			}
-		) {
-			/**
-			 * 
-			 */
-			private static final long serialVersionUID = 1L;
-			boolean[] columnEditables = new boolean[] {
-				false, false, false, false, false, false
-			};
-			public boolean isCellEditable(int row, int column) {
-				return columnEditables[column];
-			}
-		});
+		));
 	}
 }
