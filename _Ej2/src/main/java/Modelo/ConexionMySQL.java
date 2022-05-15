@@ -174,4 +174,33 @@ public class ConexionMySQL {
 		}
 	}
 	
+	public ResultSet showRows(String dbName, String tableName, int id) {
+		try {
+			// Database use statement
+			
+			String queryDb = "USE " + dbName + ";";
+			
+			Statement stdb = this.connectionObj.createStatement();
+			stdb.executeUpdate(queryDb);
+			
+			// Insert into the table statement
+			String query = "SELECT * FROM " + tableName + " WHERE ID=" + id + ";";
+			
+			Statement st = this.connectionObj.createStatement();
+			
+			ResultSet rs = st.executeQuery(query);
+			
+			return rs;
+					
+			rs.next();
+			System.out.println( rs.getString("ID") + rs.getString("nombre"));
+			
+			System.out.println("Showing rows with id: " + id);
+			
+		}catch (Exception e) {
+			System.out.println("Showing row/s fail");
+			System.out.println(e);
+		}
+	}
+	
 }

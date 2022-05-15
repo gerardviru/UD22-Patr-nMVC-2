@@ -24,11 +24,11 @@ public class Conexion {
 
 		/* Crear tabla cliente */
 
-		sqlQuery = "CREATE TABLE cliente (" + "ID INT(11) PRIMARY KEY NOT NULL AUTO_INCREMENT,"
+		sqlQuery = "CREATE TABLE clientes (" + "ID INT(11) PRIMARY KEY NOT NULL AUTO_INCREMENT,"
 				+ "Nombre VARCHAR(100) DEFAULT NULL ," + "Apellido VARCHAR(100) DEFAULT NULL,"
 				+ "Dirección VARCHAR(100) DEFAULT NULL," + "DNI INT(11) DEFAULT NULL," + "Fecha date DEFAULT NULL);";
 
-		mysql.insertQuery("Clientes", sqlQuery);
+		mysql.insertQuery("VideoClub", sqlQuery);
 
 	}
 
@@ -41,7 +41,7 @@ public class Conexion {
 				+ "ID_cli INT(11) DEFAULT NULL,"
 				+ "CONSTRAINT videos_fk FOREIGN KEY (ID_cli) REFERENCES cliente(ID) ON DELETE CASCADE ON UPDATE CASCADE);";
 
-		mysql.insertQuery("Clientes", sqlQuery);
+		mysql.insertQuery("VideoClub", sqlQuery);
 	}
 
 	
@@ -55,7 +55,7 @@ public class Conexion {
 				+ "(\"Juan\",\"Garcia\",\"Calle Larios Nº1\",\"39183471\",\"1995/11/25\"),"
 				+ "(\"Belen\",\"Gutierrez\",\"Calle Palacios Nº32\",\"39183948\",\"1990/05/17\"),"
 				+ "(\"Azucena\",\"Monte\",\"Calle Nueve Nº10\",\"39192398\",\"1998/11/12\");";
-		mysql.insertQuery("Clientes", sqlQuery);
+		mysql.insertQuery("VideoClub", sqlQuery);
 	}
 	
 	
@@ -70,7 +70,7 @@ public class Conexion {
 		+ "(\"Viajes\",\"Jesus Calleja\",3),"
 		+ "(\"Cine\",\"Almodovar\",4),"
 		+ "(\"Juegos\",\"Sergio\",5);";
-		mysql.insertQuery("Clientes", sqlQuery);
+		mysql.insertQuery("VideoClub", sqlQuery);
 	}
 
 }
