@@ -15,13 +15,13 @@ public class Cliente {
 		
 	}
 
-	public Cliente(Long iD, String nombre, String apellido, String dirección, String dNI, Date fecha) {
+	public Cliente(Long iD, String nombre, String apellido, String dirección, String dni, Date fecha) {
 		
 		ID = iD;
 		Nombre = nombre;
 		Apellido = apellido;
 		Dirección = dirección;
-		DNI = dNI;
+		DNI = dni;
 		Fecha = fecha;
 	}
 	

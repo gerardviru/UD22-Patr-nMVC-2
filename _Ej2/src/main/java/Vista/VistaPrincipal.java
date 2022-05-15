@@ -30,7 +30,7 @@ public class VistaPrincipal extends JFrame {
 	/**
 	 * Launch the application.
 	 */
-	public static void vistaR() {
+	public static void crearVista() {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
@@ -119,8 +119,8 @@ public class VistaPrincipal extends JFrame {
 			}
 		));
 		
-		JButton btnNewButton = new JButton("");
-		btnNewButton.setIcon(new ImageIcon(VistaPrincipal.class.getResource("/com/sun/javafx/scene/web/skin/Undo_16x16_JFX.png")));
+		JButton btnNewButton = new JButton("Actualizar");
+//		btnNewButton.setIcon(new ImageIcon(VistaPrincipal.class.getResource("/com/sun/javafx/scene/web/skin/Undo_16x16_JFX.png")));
 		btnNewButton.setBounds(431, 92, 49, 31);
 		contentPane.add(btnNewButton);
 	}

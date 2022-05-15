@@ -1,7 +1,14 @@
 package Controlador;
 
-import Vista.vistaC_cli;
+import Vista.VistaPrincipal;
 
 public class Controlador {
-	vistaC_cli
+	
+	// Attributes
+	private VistaPrincipal vistaPrincipal;
+	
+	// Contructors
+	public Controlador(VistaPrincipal vistaPrincipal) {
+		this.vistaPrincipal = vistaPrincipal;
+	}
 }

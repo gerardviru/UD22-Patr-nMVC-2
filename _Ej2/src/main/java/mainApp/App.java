@@ -29,8 +29,7 @@ public class App
 //    	vistaC_vid vistaC_vid = new vistaC_vid();
 //    	vistaC_vid.vista();
     	
-    	VistaPrincipal VistaPrincipal = new VistaPrincipal();
-    	VistaPrincipal.vistaR();
+    	VistaPrincipal.crearVista();
     	
 //    	vistaU vistaU = new vistaU();
 //    	vistaU.vistaU();
