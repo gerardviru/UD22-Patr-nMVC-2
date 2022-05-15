@@ -25,7 +25,7 @@ import javax.swing.ImageIcon;
 public class VistaPrincipal extends JFrame {
 
 	private JPanel contentPane;
-	private JTable table;
+	private JTable tablaRegistros;
 
 	/**
 	 * Launch the application.
@@ -54,50 +54,50 @@ public class VistaPrincipal extends JFrame {
 		JMenuBar menuBar = new JMenuBar();
 		setJMenuBar(menuBar);
 		
-		JMenu mnRegistro = new JMenu("Nuevo Registro");
-		mnRegistro.setIcon(null);
-		mnRegistro.setHorizontalAlignment(SwingConstants.CENTER);
-		menuBar.add(mnRegistro);
+		JMenu pestanaNuevo = new JMenu("Nuevo Registro");
+		pestanaNuevo.setIcon(null);
+		pestanaNuevo.setHorizontalAlignment(SwingConstants.CENTER);
+		menuBar.add(pestanaNuevo);
 		
-		JMenuItem mntmCliente = new JMenuItem("Cliente");
-		mntmCliente.setHorizontalAlignment(SwingConstants.LEFT);
-		mnRegistro.add(mntmCliente);
+		JMenuItem nuevoClienteMenu = new JMenuItem("Cliente");
+		nuevoClienteMenu.setHorizontalAlignment(SwingConstants.LEFT);
+		pestanaNuevo.add(nuevoClienteMenu);
 		
-		JMenuItem mntmVideo = new JMenuItem("Videos");
-		mnRegistro.add(mntmVideo);
+		JMenuItem nuevoVideoMenu = new JMenuItem("Videos");
+		pestanaNuevo.add(nuevoVideoMenu);
 		
-		JMenu mnMostrar = new JMenu("Buscar");
-		menuBar.add(mnMostrar);
+		JMenu pestanaBuscar = new JMenu("Buscar");
+		menuBar.add(pestanaBuscar);
 		
-		JMenuItem mntmCliente_1 = new JMenuItem("Cliente");
-		mntmCliente_1.setHorizontalAlignment(SwingConstants.LEFT);
-		mnMostrar.add(mntmCliente_1);
+		JMenuItem buscarClienteMenu = new JMenuItem("Cliente");
+		buscarClienteMenu.setHorizontalAlignment(SwingConstants.LEFT);
+		pestanaBuscar.add(buscarClienteMenu);
 		
-		JMenuItem mntmVideo_1 = new JMenuItem("Videos");
-		mnMostrar.add(mntmVideo_1);
+		JMenuItem buscarVideoMenu = new JMenuItem("Videos");
+		pestanaBuscar.add(buscarVideoMenu);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JLabel lblTitulo = new JLabel("Selecciona la tabla que quiere mostrar");
-		lblTitulo.setFont(new Font("SansSerif", Font.PLAIN, 15));
-		lblTitulo.setHorizontalAlignment(SwingConstants.CENTER);
-		lblTitulo.setBounds(172, 24, 261, 22);
-		contentPane.add(lblTitulo);
+		JLabel tituloLable = new JLabel("Selecciona la tabla que quiere mostrar");
+		tituloLable.setFont(new Font("SansSerif", Font.PLAIN, 15));
+		tituloLable.setHorizontalAlignment(SwingConstants.CENTER);
+		tituloLable.setBounds(172, 24, 261, 22);
+		contentPane.add(tituloLable);
 		
-		JComboBox<String> Desplegable = new JComboBox<String>();
-		Desplegable.setModel(new DefaultComboBoxModel<String>(new String[] {"Tabla Cliente", "Tabla Video", "Ambas Tablas"}));
-		Desplegable.setBounds(229, 92, 183, 31);
-		contentPane.add(Desplegable);
+		JComboBox<String> desplegable = new JComboBox<String>();
+		desplegable.setModel(new DefaultComboBoxModel<String>(new String[] {"Tabla Cliente", "Tabla Video", "Ambas Tablas"}));
+		desplegable.setBounds(229, 92, 183, 31);
+		contentPane.add(desplegable);
 		
-		table = new JTable();
-		table.setRowSelectionAllowed(false);
-		table.setVisible(false);
-		contentPane.add(table);
-		table.setBorder(new LineBorder(new Color(0, 0, 0)));
-		table.setBounds(38, 177, 557, 224);
-		table.setModel(new DefaultTableModel(
+		tablaRegistros = new JTable();
+		tablaRegistros.setRowSelectionAllowed(false);
+		tablaRegistros.setVisible(false);
+		contentPane.add(tablaRegistros);
+		tablaRegistros.setBorder(new LineBorder(new Color(0, 0, 0)));
+		tablaRegistros.setBounds(38, 177, 557, 224);
+		tablaRegistros.setModel(new DefaultTableModel(
 			new Object[][] {
 				{null, null, null, null, null, null},
 				{null, null, null, null, null, null},
@@ -119,9 +119,9 @@ public class VistaPrincipal extends JFrame {
 			}
 		));
 		
-		JButton btnNewButton = new JButton("Actualizar");
+		JButton actualizarBtn = new JButton("Actualizar");
 //		btnNewButton.setIcon(new ImageIcon(VistaPrincipal.class.getResource("/com/sun/javafx/scene/web/skin/Undo_16x16_JFX.png")));
-		btnNewButton.setBounds(431, 92, 49, 31);
-		contentPane.add(btnNewButton);
+		actualizarBtn.setBounds(431, 92, 88, 31);
+		contentPane.add(actualizarBtn);
 	}
 }
