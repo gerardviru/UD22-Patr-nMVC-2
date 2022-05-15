@@ -3,7 +3,7 @@ package Modelo;
 public class Config {
 
 	// direccion
-		private String direccion = "jdbc:mysql://192.168.1.171:3306?useTimezone=UTC";
+		private String direccion = "jdbc:mysql://192.168.1.145:3306";
 		private String user = "remote";
 		private String pass = "Reus_2022";
 		

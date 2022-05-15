@@ -12,6 +12,9 @@ import javax.swing.JComboBox;
 import java.awt.Color;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
+
+import listenersBotones.ListenerActualizarTodos;
+
 import javax.swing.border.LineBorder;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JScrollBar;
@@ -21,16 +24,19 @@ import javax.swing.JMenu;
 import javax.swing.JList;
 import javax.swing.JButton;
 import javax.swing.ImageIcon;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class VistaPrincipal extends JFrame {
 
 	private JPanel contentPane;
 	private JTable tablaRegistros;
+	private JButton actualizarBtn;
 
 	/**
 	 * Launch the application.
 	 */
-	public static void crearVista() {
+	public void crearVista() {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
@@ -119,8 +125,8 @@ public class VistaPrincipal extends JFrame {
 			}
 		));
 		
-		JButton actualizarBtn = new JButton("Actualizar");
-//		btnNewButton.setIcon(new ImageIcon(VistaPrincipal.class.getResource("/com/sun/javafx/scene/web/skin/Undo_16x16_JFX.png")));
+		actualizarBtn = new JButton("Actualizar");
+		actualizarBtn.addActionListener(new ListenerActualizarTodos());
 		actualizarBtn.setBounds(431, 92, 88, 31);
 		contentPane.add(actualizarBtn);
 	}

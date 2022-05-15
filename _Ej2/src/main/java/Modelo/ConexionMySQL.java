@@ -7,15 +7,16 @@ import java.sql.Statement;
 
 public class ConexionMySQL {
 
-	Connection connectionObj;
+	public Connection connectionObj;
 	
 	//Constructor
 	public ConexionMySQL() {
-	};
+	}
 
 	public void conectar() {
 		Config config = new Config();
 		try {
+			System.out.println("Intentando conectar con la base de datos...");
 			Class.forName("com.mysql.cj.jdbc.Driver");
 			Connection conexion = DriverManager.getConnection(config.getDireccion(), config.getUser(), config.getPass());
 			this.connectionObj = conexion;
