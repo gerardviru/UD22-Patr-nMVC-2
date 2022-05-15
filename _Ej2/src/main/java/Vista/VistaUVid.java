@@ -13,7 +13,7 @@ import javax.swing.JComboBox;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 
-public class vistaUVid extends JFrame {
+public class VistaUVid extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField textField;
@@ -27,7 +27,7 @@ public class vistaUVid extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					vistaUVid frame = new vistaUVid();
+					VistaUVid frame = new VistaUVid();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -39,7 +39,7 @@ public class vistaUVid extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public vistaUVid() {
+	public VistaUVid() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 600);
 		contentPane = new JPanel();

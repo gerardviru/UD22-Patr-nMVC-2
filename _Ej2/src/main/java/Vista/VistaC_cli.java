@@ -12,7 +12,7 @@ import java.awt.Font;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 
-public class vistaC_cli extends JFrame {
+public class VistaC_cli extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField TxtField_Nombre;
@@ -28,7 +28,7 @@ public class vistaC_cli extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					vistaC_cli frame = new vistaC_cli();
+					VistaC_cli frame = new VistaC_cli();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -40,7 +40,7 @@ public class vistaC_cli extends JFrame {
 	/**
 	 * Creacion de la vista Creación Tabla.
 	 */
-	public vistaC_cli() {
+	public VistaC_cli() {
 		setTitle("Insertar valores ");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 600);

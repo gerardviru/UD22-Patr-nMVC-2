@@ -15,7 +15,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JComboBox;
 
-public class vistaU extends JFrame {
+public class VistaU extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField textField;
@@ -31,7 +31,7 @@ public class vistaU extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					vistaU frame = new vistaU();
+					VistaU frame = new VistaU();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -43,7 +43,7 @@ public class vistaU extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public vistaU() {
+	public VistaU() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 600);
 		contentPane = new JPanel();

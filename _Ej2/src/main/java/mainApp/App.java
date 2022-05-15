@@ -2,16 +2,16 @@ package mainApp;
 
 import Modelo.ModeloClientes;
 import Modelo.modeloVideos;
-import Vista.vistaC_cli;
+import Vista.VistaC_cli;
 //import Vista.vistaC_cli;
 //import Vista.vistaC_vid;
 //import Vista.vistaR;
 //import Vista.vistaU;
 //import Vista.vistaUVid;
-import Vista.vistaC_vid;
+import Vista.VistaC_vid;
 import Vista.VistaPrincipal;
-import Vista.vistaU;
-import Vista.vistaUVid;
+import Vista.VistaU;
+import Vista.VistaUVid;
 
 public class App 
 {
