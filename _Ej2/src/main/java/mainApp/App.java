@@ -9,7 +9,7 @@ import Vista.vistaC_cli;
 //import Vista.vistaU;
 //import Vista.vistaUVid;
 import Vista.vistaC_vid;
-import Vista.vistaR;
+import Vista.VistaPrincipal;
 import Vista.vistaU;
 import Vista.vistaUVid;
 
@@ -29,8 +29,8 @@ public class App
 //    	vistaC_vid vistaC_vid = new vistaC_vid();
 //    	vistaC_vid.vista();
     	
-    	vistaR vistaR = new vistaR();
-    	vistaR.vistaR();
+    	VistaPrincipal VistaPrincipal = new VistaPrincipal();
+    	VistaPrincipal.vistaR();
     	
 //    	vistaU vistaU = new vistaU();
 //    	vistaU.vistaU();

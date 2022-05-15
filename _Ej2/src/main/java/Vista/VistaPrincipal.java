@@ -15,8 +15,14 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.border.LineBorder;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JScrollBar;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
+import javax.swing.JMenu;
+import javax.swing.JList;
+import javax.swing.JButton;
+import javax.swing.ImageIcon;
 
-public class vistaR extends JFrame {
+public class VistaPrincipal extends JFrame {
 
 	private JPanel contentPane;
 	private JTable table;
@@ -28,7 +34,7 @@ public class vistaR extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					vistaR frame = new vistaR();
+					VistaPrincipal frame = new VistaPrincipal();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -40,10 +46,35 @@ public class vistaR extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public vistaR() {
+	public VistaPrincipal() {
 		setTitle("Muestra Datos");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 650, 600);
+		
+		JMenuBar menuBar = new JMenuBar();
+		setJMenuBar(menuBar);
+		
+		JMenu mnRegistro = new JMenu("Nuevo Registro");
+		mnRegistro.setIcon(null);
+		mnRegistro.setHorizontalAlignment(SwingConstants.CENTER);
+		menuBar.add(mnRegistro);
+		
+		JMenuItem mntmCliente = new JMenuItem("Cliente");
+		mntmCliente.setHorizontalAlignment(SwingConstants.LEFT);
+		mnRegistro.add(mntmCliente);
+		
+		JMenuItem mntmVideo = new JMenuItem("Videos");
+		mnRegistro.add(mntmVideo);
+		
+		JMenu mnMostrar = new JMenu("Buscar");
+		menuBar.add(mnMostrar);
+		
+		JMenuItem mntmCliente_1 = new JMenuItem("Cliente");
+		mntmCliente_1.setHorizontalAlignment(SwingConstants.LEFT);
+		mnMostrar.add(mntmCliente_1);
+		
+		JMenuItem mntmVideo_1 = new JMenuItem("Videos");
+		mnMostrar.add(mntmVideo_1);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -62,7 +93,7 @@ public class vistaR extends JFrame {
 		
 		table = new JTable();
 		table.setRowSelectionAllowed(false);
-		table.setVisible(true);
+		table.setVisible(false);
 		contentPane.add(table);
 		table.setBorder(new LineBorder(new Color(0, 0, 0)));
 		table.setBounds(38, 177, 557, 224);
@@ -87,5 +118,10 @@ public class vistaR extends JFrame {
 				"1", "2", "3", "4", "5", "6"
 			}
 		));
+		
+		JButton btnNewButton = new JButton("");
+		btnNewButton.setIcon(new ImageIcon(VistaPrincipal.class.getResource("/com/sun/javafx/scene/web/skin/Undo_16x16_JFX.png")));
+		btnNewButton.setBounds(431, 92, 49, 31);
+		contentPane.add(btnNewButton);
 	}
 }
