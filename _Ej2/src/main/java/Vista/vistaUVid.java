@@ -47,10 +47,10 @@ public class vistaUVid extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JLabel lblUpgradeTablaVideos = new JLabel("Upgrade de la tabla Videos");
+		JLabel lblUpgradeTablaVideos = new JLabel("Modificación de la tabla Videos");
 		lblUpgradeTablaVideos.setHorizontalAlignment(SwingConstants.CENTER);
 		lblUpgradeTablaVideos.setFont(new Font("SansSerif", Font.PLAIN, 15));
-		lblUpgradeTablaVideos.setBounds(123, 21, 272, 19);
+		lblUpgradeTablaVideos.setBounds(72, 22, 272, 19);
 		contentPane.add(lblUpgradeTablaVideos);
 		
 		JLabel lblNewLabel = new JLabel("ID");
@@ -88,10 +88,15 @@ public class vistaUVid extends JFrame {
 		textField_2.setBounds(31, 296, 185, 20);
 		contentPane.add(textField_2);
 		
-		JButton btnEnviarDatos = new JButton("Aceptar");
-		btnEnviarDatos.setFont(new Font("SansSerif", Font.PLAIN, 11));
-		btnEnviarDatos.setBounds(31, 360, 89, 23);
-		contentPane.add(btnEnviarDatos);
+		JButton btnEnviarDatos_1 = new JButton("Actualizar");
+		btnEnviarDatos_1.setFont(new Font("SansSerif", Font.PLAIN, 11));
+		btnEnviarDatos_1.setBounds(28, 378, 89, 23);
+		contentPane.add(btnEnviarDatos_1);
+		
+		JButton btnEnviarDatos_1_1 = new JButton("Eliminar");
+		btnEnviarDatos_1_1.setFont(new Font("SansSerif", Font.PLAIN, 11));
+		btnEnviarDatos_1_1.setBounds(297, 379, 89, 23);
+		contentPane.add(btnEnviarDatos_1_1);
 	}
 
 }

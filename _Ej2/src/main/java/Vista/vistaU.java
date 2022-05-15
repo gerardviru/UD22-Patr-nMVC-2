@@ -51,10 +51,10 @@ public class vistaU extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JLabel lblUpgradeDeValores = new JLabel("Upgrade de la tabla Cliente");
+		JLabel lblUpgradeDeValores = new JLabel("Modificación de la tabla Cliente");
 		lblUpgradeDeValores.setHorizontalAlignment(SwingConstants.CENTER);
 		lblUpgradeDeValores.setFont(new Font("SansSerif", Font.PLAIN, 15));
-		lblUpgradeDeValores.setBounds(94, 11, 272, 19);
+		lblUpgradeDeValores.setBounds(78, 11, 272, 19);
 		contentPane.add(lblUpgradeDeValores);
 		
 		JLabel lblNombre = new JLabel("Nombre: ");
@@ -102,7 +102,7 @@ public class vistaU extends JFrame {
 		textField_4.setBounds(24, 409, 185, 20);
 		contentPane.add(textField_4);
 		
-		JButton btnEnviarDatos = new JButton("Aceptar");
+		JButton btnEnviarDatos = new JButton("Actualizar");
 		btnEnviarDatos.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			}
@@ -118,5 +118,10 @@ public class vistaU extends JFrame {
 		JComboBox comboBox = new JComboBox();
 		comboBox.setBounds(24, 83, 30, 22);
 		contentPane.add(comboBox);
+		
+		JButton btnEnviarDatos_1 = new JButton("Eliminar");
+		btnEnviarDatos_1.setFont(new Font("SansSerif", Font.PLAIN, 11));
+		btnEnviarDatos_1.setBounds(289, 479, 89, 23);
+		contentPane.add(btnEnviarDatos_1);
 	}
 }
