@@ -1,5 +1,10 @@
 package Controlador;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.ArrayList;
+
+import Modelo.Cliente;
 import Modelo.ConexionMySQL;
 import Modelo.ModeloClientes;
 import Vista.VistaPrincipal;
@@ -43,20 +48,36 @@ public class Controlador {
 		this.conexionMySQL = conexionMySQL;
 	}
 	
+	
+	
+	/**
+	 * @return the modeloClientes
+	 */
+	public ModeloClientes getModeloClientes() {
+		return modeloClientes;
+	}
+
+	/**
+	 * @param modeloClientes the modeloClientes to set
+	 */
+	public void setModeloClientes(ModeloClientes modeloClientes) {
+		this.modeloClientes = modeloClientes;
+	}
+
+	/**
+	 * Inicializar App 
+	 */
 	public void init() {
 		// Inicializar la vista principal
 		VistaPrincipal vistaPrincipal = new VistaPrincipal();
-		vistaPrincipal.crearVista();
-		vistaPrincipal = new VistaPrincipal();
-		vistaPrincipal.crearVista();
+		vistaPrincipal.crearVista(this);
 		
 		// Inicializar conexion mysql
 		conexionMySQL = new ConexionMySQL();
 		conexionMySQL.conectar();
 		
+		modeloClientes = new ModeloClientes(conexionMySQL);
+		
 	}
-	
-	
-	
 	
 }

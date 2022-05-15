@@ -13,30 +13,27 @@ import java.awt.Color;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
-import listenersBotones.ListenerActualizarTodos;
+import Controlador.Controlador;
 
 import javax.swing.border.LineBorder;
 import javax.swing.DefaultComboBoxModel;
-import javax.swing.JScrollBar;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JMenu;
-import javax.swing.JList;
 import javax.swing.JButton;
-import javax.swing.ImageIcon;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
 
 public class VistaPrincipal extends JFrame {
 
 	private JPanel contentPane;
 	private JTable tablaRegistros;
 	private JButton actualizarBtn;
+	private Controlador controlador;
 
 	/**
 	 * Launch the application.
 	 */
-	public void crearVista() {
+	public void crearVista(Controlador controlador) {
+		this.controlador = controlador;
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
@@ -53,6 +50,7 @@ public class VistaPrincipal extends JFrame {
 	 * Create the frame.
 	 */
 	public VistaPrincipal() {
+		
 		setTitle("Muestra Datos");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 650, 600);
@@ -126,8 +124,37 @@ public class VistaPrincipal extends JFrame {
 		));
 		
 		actualizarBtn = new JButton("Actualizar");
-		actualizarBtn.addActionListener(new ListenerActualizarTodos());
 		actualizarBtn.setBounds(431, 92, 88, 31);
 		contentPane.add(actualizarBtn);
 	}
+
+	/**
+	 * @return the tablaRegistros
+	 */
+	public JTable getTablaRegistros() {
+		return tablaRegistros;
+	}
+
+	/**
+	 * @param tablaRegistros the tablaRegistros to set
+	 */
+	public void setTablaRegistros(JTable tablaRegistros) {
+		this.tablaRegistros = tablaRegistros;
+	}
+
+	/**
+	 * @return the actualizarBtn
+	 */
+	public JButton getActualizarBtn() {
+		return actualizarBtn;
+	}
+
+	/**
+	 * @param actualizarBtn the actualizarBtn to set
+	 */
+	public void setActualizarBtn(JButton actualizarBtn) {
+		this.actualizarBtn = actualizarBtn;
+	}
+	
+	
 }
