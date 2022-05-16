@@ -30,4 +30,27 @@ public class Config {
 		public String getPass() {
 			return pass;
 		}
+
+		/**
+		 * @param direccion the direccion to set
+		 */
+		public void setDireccion(String direccion) {
+			this.direccion = direccion;
+		}
+
+		/**
+		 * @param user the user to set
+		 */
+		public void setUser(String user) {
+			this.user = user;
+		}
+
+		/**
+		 * @param pass the pass to set
+		 */
+		public void setPass(String pass) {
+			this.pass = pass;
+		}
+		
+		
 }

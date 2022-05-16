@@ -117,7 +117,6 @@ public class VistaPrincipal extends JFrame {
 		
 		textArea = new JTextArea();
 		textArea.setEditable(false);
-		textArea.append("loquesea");
 		textArea.setBounds(113, 151, 370, 189);
 		contentPane.add(textArea);
 	}

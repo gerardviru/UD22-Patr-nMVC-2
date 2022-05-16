@@ -14,11 +14,13 @@ import Modelo.ConexionMySQL;
 import Modelo.ModeloClientes;
 import Modelo.ModeloVideos;
 import Modelo.Video;
+import Vista.VistaConexion;
 import Vista.VistaPrincipal;
 
 public class Controlador {
 
 	// Attributes
+	private VistaConexion vistaConexion;
 	private VistaPrincipal vistaPrincipal;
 	private ConexionMySQL conexionMySQL;
 	private ModeloClientes modeloClientes;
@@ -78,6 +80,11 @@ public class Controlador {
 		vistaPrincipal = new VistaPrincipal();
 		vistaPrincipal.setVisible(true);
 
+		
+		// Inicializar vista Conexion mysql
+		vistaConexion = new VistaConexion();
+		vistaConexion.setVisible(true);
+		
 		// Inicializar conexion mysql
 		conexionMySQL = new ConexionMySQL();
 		conexionMySQL.conectar();
