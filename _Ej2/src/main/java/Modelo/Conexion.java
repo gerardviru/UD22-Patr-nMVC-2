@@ -9,13 +9,6 @@ public class Conexion {
 		this.mysql = conexionMySQL;
 	}
 
-	public void conectar() {
-
-		/* Conectar a mysql server */
-
-		mysql.conectar();
-	}
-
 //	public void crearDB() {
 //		
 //		/* Crear base de datos Clientes */

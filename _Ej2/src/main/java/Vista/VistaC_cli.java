@@ -43,7 +43,7 @@ public class VistaC_cli extends JFrame {
 	public VistaC_cli() {
 		setTitle("Insertar valores ");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 600);
+		setBounds(750, 200, 450, 600);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);

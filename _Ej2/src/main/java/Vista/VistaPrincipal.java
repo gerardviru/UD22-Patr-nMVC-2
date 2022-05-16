@@ -30,6 +30,11 @@ public class VistaPrincipal extends JFrame {
 
 	public JPanel contentPane;
 	public JButton actualizarBtn;
+	public JMenuItem nuevoClienteMenu;
+	public JMenuItem nuevoVideoMenu;
+	public JMenuItem buscarClienteMenu;
+	public JMenuItem buscarVideoMenu;
+	
 	private Controlador controlador;
 	private JTextArea textArea;
 	public JComboBox<String> desplegable;
@@ -41,7 +46,7 @@ public class VistaPrincipal extends JFrame {
 		
 		setTitle("Muestra Datos");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 650, 600);
+		setBounds(750, 200, 650, 600);
 		
 		JMenuBar menuBar = new JMenuBar();
 		setJMenuBar(menuBar);
@@ -51,21 +56,21 @@ public class VistaPrincipal extends JFrame {
 		pestanaNuevo.setHorizontalAlignment(SwingConstants.CENTER);
 		menuBar.add(pestanaNuevo);
 		
-		JMenuItem nuevoClienteMenu = new JMenuItem("Cliente");
+		nuevoClienteMenu = new JMenuItem("Cliente");
 		nuevoClienteMenu.setHorizontalAlignment(SwingConstants.LEFT);
 		pestanaNuevo.add(nuevoClienteMenu);
 		
-		JMenuItem nuevoVideoMenu = new JMenuItem("Videos");
+		nuevoVideoMenu = new JMenuItem("Videos");
 		pestanaNuevo.add(nuevoVideoMenu);
 		
 		JMenu pestanaBuscar = new JMenu("Buscar");
 		menuBar.add(pestanaBuscar);
 		
-		JMenuItem buscarClienteMenu = new JMenuItem("Cliente");
+		buscarClienteMenu = new JMenuItem("Cliente");
 		buscarClienteMenu.setHorizontalAlignment(SwingConstants.LEFT);
 		pestanaBuscar.add(buscarClienteMenu);
 		
-		JMenuItem buscarVideoMenu = new JMenuItem("Videos");
+		buscarVideoMenu = new JMenuItem("Videos");
 		pestanaBuscar.add(buscarVideoMenu);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -80,44 +85,16 @@ public class VistaPrincipal extends JFrame {
 		
 		desplegable = new JComboBox<String>();
 		desplegable.setModel(new DefaultComboBoxModel<String>(new String[] {"Tabla Cliente", "Tabla Video"}));
-		desplegable.setBounds(229, 92, 183, 31);
+		desplegable.setBounds(172, 92, 183, 31);
 		contentPane.add(desplegable);
 		
-//		tablaRegistros = new JTable();
-//		tablaRegistros.setRowSelectionAllowed(false);
-//		tablaRegistros.setVisible(false);
-//		contentPane.add(tablaRegistros);
-//		tablaRegistros.setBorder(new LineBorder(new Color(0, 0, 0)));
-//		tablaRegistros.setBounds(34, 469, 557, 70);
-//		tablaRegistros.setModel(new DefaultTableModel(
-//			new Object[][] {
-//				{"ID", "Nombre", "Apellido", "Direccion", "Dni", "Fecha"},
-//				{null, null, null, null, null, null},
-//				{null, null, null, null, null, null},
-//				{null, null, null, null, null, null},
-//				{null, null, null, null, null, null},
-//				{null, null, null, null, null, null},
-//				{null, null, null, null, null, null},
-//				{null, null, null, null, null, null},
-//				{null, null, null, null, null, null},
-//				{null, null, null, null, null, null},
-//				{null, null, null, null, null, null},
-//				{null, null, null, null, null, null},
-//				{null, null, null, null, null, null},
-//				{null, null, null, null, null, null},
-//			},
-//			new String[] {
-//				"1", "2", "3", "4", "5", "6"
-//			}
-//		));
-		
 		actualizarBtn = new JButton("Actualizar");
-		actualizarBtn.setBounds(431, 92, 88, 31);
+		actualizarBtn.setBounds(365, 92, 88, 31);
 		contentPane.add(actualizarBtn);
 		
 		textArea = new JTextArea();
 		textArea.setEditable(false);
-		textArea.setBounds(113, 151, 370, 189);
+		textArea.setBounds(113, 151, 404, 350);
 		contentPane.add(textArea);
 	}
 

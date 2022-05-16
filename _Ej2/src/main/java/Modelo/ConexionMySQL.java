@@ -8,22 +8,24 @@ import java.sql.Statement;
 public class ConexionMySQL {
 
 	public Connection connectionObj;
+	public boolean conexionEstablecida = false;
 	
 	//Constructor
 	public ConexionMySQL() {
 	}
 
-	public void conectar() {
-		Config config = new Config();
+	public void conectar(ConfigConexion config) {
 		try {
 			System.out.println("Intentando conectar con la base de datos...");
 			Class.forName("com.mysql.cj.jdbc.Driver");
-			Connection conexion = DriverManager.getConnection(config.getDireccion(), config.getUser(), config.getPass());
+			Connection conexion = DriverManager.getConnection("jdbc:mysql://" + config.getDireccion() + ":3306", config.getUser(), config.getPass());
 			this.connectionObj = conexion;
 			System.out.println("Conectado a la base de datos con exito");
+			conexionEstablecida = true;
 		} catch (Exception e) {
 			System.out.println("Fallo conexion con la base de datos");
 			System.out.println(e);
+			conexionEstablecida = false;
 		}
 	}
 	

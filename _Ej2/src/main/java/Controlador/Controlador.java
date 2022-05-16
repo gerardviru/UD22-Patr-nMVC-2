@@ -3,19 +3,27 @@ package Controlador;
 import java.awt.Point;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.ObjectInputFilter.Config;
 import java.util.ArrayList;
 
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
 import Modelo.Cliente;
 import Modelo.Conexion;
 import Modelo.ConexionMySQL;
+import Modelo.ConfigConexion;
 import Modelo.ModeloClientes;
 import Modelo.ModeloVideos;
 import Modelo.Video;
+import Vista.VistaC_cli;
+import Vista.VistaC_vid;
 import Vista.VistaConexion;
 import Vista.VistaPrincipal;
+import Vista.VistaU;
+import Vista.VistaUVid;
 
 public class Controlador {
 
@@ -25,6 +33,7 @@ public class Controlador {
 	private ConexionMySQL conexionMySQL;
 	private ModeloClientes modeloClientes;
 	private ModeloVideos modeloVideos;
+	private ConfigConexion configConexion;
 
 	// Constructors
 	public Controlador() {
@@ -76,29 +85,12 @@ public class Controlador {
 	 * Inicializar la vista principal
 	 */
 	public void init() {
-		// Inicializar la vista principal
-		vistaPrincipal = new VistaPrincipal();
-		vistaPrincipal.setVisible(true);
 
-		
 		// Inicializar vista Conexion mysql
 		vistaConexion = new VistaConexion();
 		vistaConexion.setVisible(true);
-		
-		// Inicializar conexion mysql
-		conexionMySQL = new ConexionMySQL();
-		conexionMySQL.conectar();
-		conexionMySQL.dropDB("VideoClub");
 
-		// Crear base de datos si no existe
-		conexionMySQL.createDB("VideoClub");
-		Conexion conexion = new Conexion(conexionMySQL);
-		conexion.crearTablaClientes();
-		conexion.crearTablaVideos();
-		conexion.insertarRegistrosClientes();
-		conexion.insertarRegistrosVideos();
-
-		listenerActualziarBtn();
+		listenerConectarBtn();
 
 	}
 
@@ -112,7 +104,7 @@ public class Controlador {
 			public void actionPerformed(ActionEvent e) {
 
 				int selItem = vistaPrincipal.desplegable.getSelectedIndex();
-				
+
 				switch (selItem) {
 				case 0:
 					modeloClientes = new ModeloClientes(conexionMySQL);
@@ -121,8 +113,9 @@ public class Controlador {
 					vistaPrincipal.getTextArea().setText("");
 					for (int i = 0; i < clientes.size(); i++) {
 						Cliente cliente = clientes.get(i);
-						String stringCliente = cliente.getID() + ". " + cliente.getNombre() + ", " + cliente.getApellido() 
-						+ cliente.getDirección() + ", " + cliente.getDNI() + ", " + cliente.getFecha() + ", " + "\n";
+						String stringCliente = cliente.getID() + ". " + cliente.getNombre() + ", "
+								+ cliente.getApellido() + cliente.getDirección() + ", " + cliente.getDNI() + ", "
+								+ cliente.getFecha() + ", " + "\n";
 						vistaPrincipal.getTextArea().append(stringCliente);
 
 					}
@@ -130,12 +123,13 @@ public class Controlador {
 				case 1:
 					modeloVideos = new ModeloVideos(conexionMySQL);
 					ArrayList<Video> videos = modeloVideos.mostrarTodos();
-					
+
 					vistaPrincipal.getTextArea().setText("");
 					for (int i = 0; i < videos.size(); i++) {
 						Video video = videos.get(i);
-						vistaPrincipal.getTextArea().append(video.getID() + ". " + video.getTitle() + ", " + video.getDirector() + ", " + video.getId_cli() + "\n");
-						
+						vistaPrincipal.getTextArea().append(video.getID() + ". " + video.getTitle() + ", "
+								+ video.getDirector() + ", " + video.getId_cli() + "\n");
+
 					}
 					break;
 
@@ -148,4 +142,110 @@ public class Controlador {
 		});
 	}
 
+	/**
+	 * Listener boton "Conectar"
+	 */
+	public void listenerConectarBtn() {
+		vistaConexion.btnConectar.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				System.out.println("Conectar");
+				configConexion = new ConfigConexion();
+				configConexion.setDireccion(vistaConexion.textFieldIP.getText());
+				configConexion.setUser(vistaConexion.textFieldUser.getText());
+				configConexion.setPass(vistaConexion.passwordField.getText());
+
+				System.out.println(vistaConexion.textFieldIP.getText());
+				System.out.println(vistaConexion.textFieldUser.getText());
+				System.out.println(vistaConexion.passwordField.getText());
+
+				conexionMySQL = new ConexionMySQL();
+				conexionMySQL.conectar(configConexion);
+
+				if (conexionMySQL.conexionEstablecida) {
+					JOptionPane dialog = new JOptionPane();
+					dialog.showMessageDialog(null, "Conectado a la base de datos con exito");
+					vistaConexion.dispose();
+					// Abrir vistaPrincipal
+					abrirVistaPrincipal();
+
+					// Crear base de datos si no existe
+					conexionMySQL.dropDB("VideoClub");
+					conexionMySQL.createDB("VideoClub");
+					Conexion conexion = new Conexion(conexionMySQL);
+					conexion.crearTablaClientes();
+					conexion.crearTablaVideos();
+					conexion.insertarRegistrosClientes();
+					conexion.insertarRegistrosVideos();
+
+				} else {
+					JOptionPane dialog = new JOptionPane();
+					dialog.showMessageDialog(null, "Conexión fallida");
+
+				}
+
+			}
+		});
+	}
+
+	public void abrirVistaPrincipal() {
+		// Inicializar la vista principal
+		vistaPrincipal = new VistaPrincipal();
+		vistaPrincipal.setVisible(true);
+		listenerActualziarBtn();
+		listenerNuevoClienteMenu();
+		listenerNuevoVideoMenu();
+		listenerBuscarClienteMenu();
+		listenerBuscarVideoMenu();
+	}
+
+	private void listenerNuevoClienteMenu() {
+		vistaPrincipal.nuevoClienteMenu.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				VistaC_cli vistaCli = new VistaC_cli();
+				vistaCli.setVisible(true);
+				vistaCli.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+			}
+		});
+		
+	}
+	private void listenerBuscarClienteMenu() {
+		vistaPrincipal.buscarClienteMenu.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				VistaU vistaU = new VistaU();
+				vistaU.setVisible(true);
+				vistaU.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+			}
+		});
+		
+	}
+	private void listenerBuscarVideoMenu() {
+		vistaPrincipal.buscarVideoMenu.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				VistaUVid vistaUVid = new VistaUVid();
+				vistaUVid.setVisible(true);
+				vistaUVid.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+			}
+		});
+		
+	}
+	private void listenerNuevoVideoMenu() {
+		vistaPrincipal.nuevoVideoMenu.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				VistaC_vid vistaVid = new VistaC_vid();
+				vistaVid.setVisible(true);
+				vistaVid.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+			}
+		});
+		
+	}
 }
