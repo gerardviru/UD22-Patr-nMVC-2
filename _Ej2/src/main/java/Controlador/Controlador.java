@@ -1,10 +1,15 @@
 package Controlador;
 
+import java.awt.Point;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
+
 import Modelo.Cliente;
+import Modelo.Conexion;
 import Modelo.ConexionMySQL;
 import Modelo.ModeloClientes;
 import Vista.VistaPrincipal;
@@ -65,7 +70,7 @@ public class Controlador {
 	}
 
 	/**
-	 * Inicializar App 
+	 * Inicializar la vista principal
 	 */
 	public void init() {
 		// Inicializar la vista principal
@@ -75,8 +80,18 @@ public class Controlador {
 		// Inicializar conexion mysql
 		conexionMySQL = new ConexionMySQL();
 		conexionMySQL.conectar();
+		conexionMySQL.dropDB("VideoClub");
+		
+		// Crear base de datos si no existe
+		conexionMySQL.createDB("VideoClub");
+		Conexion conexion = new Conexion(conexionMySQL);
+		conexion.crearTablaClientes();
+		conexion.crearTablaVideos();
+		conexion.insertarRegistrosClientes();
+		conexion.insertarRegistrosVideos();
 		
 		modeloClientes = new ModeloClientes(conexionMySQL);
+		ArrayList<Cliente> clientes = modeloClientes.mostrarTodos();
 		
 	}
 	

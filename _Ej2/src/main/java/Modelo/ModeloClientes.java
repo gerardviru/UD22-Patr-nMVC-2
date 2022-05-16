@@ -32,18 +32,19 @@ public class ModeloClientes {
 
 			ArrayList<Cliente> arrClientes = new ArrayList<Cliente>();
 			
-			rs.next();
-			
-			// Crear cliente y anadirlo al array
-			Cliente cliente = new Cliente(rs.getLong("ID"), rs.getString("Nombre"), rs.getString("Apellido"), rs.getString("Direccion"),
-					rs.getString("DNI"), rs.getDate("Fecha"));
-			
-			arrClientes.add(cliente);
+			while (rs.next()) {
+				// Crear cliente y anadirlo al array
+				Cliente cliente = new Cliente(rs.getLong("ID"), rs.getString("Nombre"), rs.getString("Apellido"), rs.getString("Direccion"),
+						rs.getString("DNI"), rs.getDate("Fecha"));
+				
+				arrClientes.add(cliente);
+			}
 			
 			return arrClientes;
 			
 		} catch (Exception e) {
 			System.out.println("Fallo mostrar registros");
+			System.out.println(e);
 
 			return new ArrayList<Cliente>();
 		}

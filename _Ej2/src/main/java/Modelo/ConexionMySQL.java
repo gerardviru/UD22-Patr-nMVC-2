@@ -43,7 +43,7 @@ public class ConexionMySQL {
 	
 	public void createDB(String name) {
 		try {
-			String query = "CREATE DATABASE " + name;
+			String query = "CREATE DATABASE IF NOT EXISTS " + name;
 			Statement st = this.connectionObj.createStatement();
 			st.executeUpdate(query);
 			System.out.println("Database created!");
@@ -59,7 +59,7 @@ public class ConexionMySQL {
 	
 	public void dropDB(String name) {
 		try {
-			String query = "DROP DATABASE " + name;
+			String query = "DROP DATABASE IF EXISTS " + name;
 			Statement st = this.connectionObj.createStatement();
 			st.executeUpdate(query);
 

@@ -21,13 +21,14 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JMenu;
 import javax.swing.JButton;
+import javax.swing.JTextArea;
 
 public class VistaPrincipal extends JFrame {
 
-	private JPanel contentPane;
-	private JTable tablaRegistros;
+	public JPanel contentPane;
 	private JButton actualizarBtn;
 	private Controlador controlador;
+	private JTextArea textArea;
 
 	/**
 	 * Launch the application.
@@ -95,51 +96,43 @@ public class VistaPrincipal extends JFrame {
 		desplegable.setBounds(229, 92, 183, 31);
 		contentPane.add(desplegable);
 		
-		tablaRegistros = new JTable();
-		tablaRegistros.setRowSelectionAllowed(false);
-		tablaRegistros.setVisible(false);
-		contentPane.add(tablaRegistros);
-		tablaRegistros.setBorder(new LineBorder(new Color(0, 0, 0)));
-		tablaRegistros.setBounds(38, 177, 557, 224);
-		tablaRegistros.setModel(new DefaultTableModel(
-			new Object[][] {
-				{null, null, null, null, null, null},
-				{null, null, null, null, null, null},
-				{null, null, null, null, null, null},
-				{null, null, null, null, null, null},
-				{null, null, null, null, null, null},
-				{null, null, null, null, null, null},
-				{null, null, null, null, null, null},
-				{null, null, null, null, null, null},
-				{null, null, null, null, null, null},
-				{null, null, null, null, null, null},
-				{null, null, null, null, null, null},
-				{null, null, null, null, null, null},
-				{null, null, null, null, null, null},
-				{null, null, null, null, null, null},
-			},
-			new String[] {
-				"1", "2", "3", "4", "5", "6"
-			}
-		));
+//		tablaRegistros = new JTable();
+//		tablaRegistros.setRowSelectionAllowed(false);
+//		tablaRegistros.setVisible(false);
+//		contentPane.add(tablaRegistros);
+//		tablaRegistros.setBorder(new LineBorder(new Color(0, 0, 0)));
+//		tablaRegistros.setBounds(34, 469, 557, 70);
+//		tablaRegistros.setModel(new DefaultTableModel(
+//			new Object[][] {
+//				{"ID", "Nombre", "Apellido", "Direccion", "Dni", "Fecha"},
+//				{null, null, null, null, null, null},
+//				{null, null, null, null, null, null},
+//				{null, null, null, null, null, null},
+//				{null, null, null, null, null, null},
+//				{null, null, null, null, null, null},
+//				{null, null, null, null, null, null},
+//				{null, null, null, null, null, null},
+//				{null, null, null, null, null, null},
+//				{null, null, null, null, null, null},
+//				{null, null, null, null, null, null},
+//				{null, null, null, null, null, null},
+//				{null, null, null, null, null, null},
+//				{null, null, null, null, null, null},
+//			},
+//			new String[] {
+//				"1", "2", "3", "4", "5", "6"
+//			}
+//		));
 		
 		actualizarBtn = new JButton("Actualizar");
 		actualizarBtn.setBounds(431, 92, 88, 31);
 		contentPane.add(actualizarBtn);
-	}
-
-	/**
-	 * @return the tablaRegistros
-	 */
-	public JTable getTablaRegistros() {
-		return tablaRegistros;
-	}
-
-	/**
-	 * @param tablaRegistros the tablaRegistros to set
-	 */
-	public void setTablaRegistros(JTable tablaRegistros) {
-		this.tablaRegistros = tablaRegistros;
+		
+		textArea = new JTextArea();
+		textArea.setEditable(false);
+		textArea.append("loquesea");
+		textArea.setBounds(113, 151, 370, 189);
+		contentPane.add(textArea);
 	}
 
 	/**
@@ -155,6 +148,19 @@ public class VistaPrincipal extends JFrame {
 	public void setActualizarBtn(JButton actualizarBtn) {
 		this.actualizarBtn = actualizarBtn;
 	}
-	
+
+	/**
+	 * @return the textArea
+	 */
+	public JTextArea getTextArea() {
+		return textArea;
+	}
+
+	/**
+	 * @param textArea the textArea to set
+	 */
+	public void setTextArea(JTextArea textArea) {
+		this.textArea = textArea;
+	}
 	
 }

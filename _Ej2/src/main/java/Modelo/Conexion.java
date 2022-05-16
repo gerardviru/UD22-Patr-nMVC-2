@@ -5,8 +5,8 @@ public class Conexion {
 	private ConexionMySQL mysql;
 	private String sqlQuery;
 
-	public Conexion() {
-		this.mysql = new ConexionMySQL();
+	public Conexion(ConexionMySQL conexionMySQL) {
+		this.mysql = conexionMySQL;
 	}
 
 	public void conectar() {
@@ -16,40 +16,51 @@ public class Conexion {
 		mysql.conectar();
 	}
 
-	public void crearTablaCliente() {
-
-		/* Crear base de datos Clientes */
-
-		mysql.createDB("VideoClub");
+//	public void crearDB() {
+//		
+//		/* Crear base de datos Clientes */
+//		
+//		mysql.createDB("VideoClub");
+//		
+//		/* Crear tabla cliente */
+//		
+//		sqlQuery = "CREATE TABLE IF NOT EXISTS clientes (" + "ID INT(11) PRIMARY KEY NOT NULL AUTO_INCREMENT,"
+//				+ "Nombre VARCHAR(100) DEFAULT NULL ," + "Apellido VARCHAR(100) DEFAULT NULL,"
+//				+ "Direccion VARCHAR(100) DEFAULT NULL," + "DNI INT(11) DEFAULT NULL," + "Fecha date DEFAULT NULL);";
+//		
+//		mysql.insertQuery("VideoClub", sqlQuery);
+//		
+//	}
+	public void crearTablaClientes() {
 
 		/* Crear tabla cliente */
 
-		sqlQuery = "CREATE TABLE clientes (" + "ID INT(11) PRIMARY KEY NOT NULL AUTO_INCREMENT,"
+		sqlQuery = "CREATE TABLE IF NOT EXISTS clientes (" + "ID INT(11) PRIMARY KEY NOT NULL AUTO_INCREMENT,"
 				+ "Nombre VARCHAR(100) DEFAULT NULL ," + "Apellido VARCHAR(100) DEFAULT NULL,"
-				+ "Dirección VARCHAR(100) DEFAULT NULL," + "DNI INT(11) DEFAULT NULL," + "Fecha date DEFAULT NULL);";
+				+ "Direccion VARCHAR(100) DEFAULT NULL," + "DNI INT(11) DEFAULT NULL," + "Fecha date DEFAULT NULL);";
 
 		mysql.insertQuery("VideoClub", sqlQuery);
 
 	}
 
-	public void crearTablaVideo() {
+	public void crearTablaVideos() {
 
 		/* Crear tabla videos */
 
-		sqlQuery = "CREATE TABLE videos(" + "ID INT(11) PRIMARY KEY NOT NULL AUTO_INCREMENT,"
+		sqlQuery = "CREATE TABLE IF NOT EXISTS videos(" + "ID INT(11) PRIMARY KEY NOT NULL AUTO_INCREMENT,"
 				+ "Title VARCHAR(100) DEFAULT NULL ," + "Director VARCHAR(100) DEFAULT NULL,"
 				+ "ID_cli INT(11) DEFAULT NULL,"
-				+ "CONSTRAINT videos_fk FOREIGN KEY (ID_cli) REFERENCES cliente(ID) ON DELETE CASCADE ON UPDATE CASCADE);";
+				+ "CONSTRAINT videos_fk FOREIGN KEY (ID_cli) REFERENCES clientes(ID) ON DELETE CASCADE ON UPDATE CASCADE);";
 
 		mysql.insertQuery("VideoClub", sqlQuery);
 	}
 
 	
-	 /* Insertar registros en la tabla cliente */
+	 /* Insertar registros en la tabla clientes */
 	
 	public void insertarRegistrosClientes() {
 		
-		sqlQuery = "INSERT INTO cliente(Nombre, Apellido, Dirección, DNI, Fecha) VALUE"
+		sqlQuery = "INSERT INTO clientes (Nombre, Apellido, Direccion, DNI, Fecha) VALUE"
 				+ "(\"Manolo\",\"Garcia\",\"Calle Francia Nº4\",\"39324562\",\"1994/09/05\"),"
 				+ "(\"Maria\",\"Ramirez\",\"Calle Argentera Nº7\",\"39247289\",\"1989/08/15\"),"
 				+ "(\"Juan\",\"Garcia\",\"Calle Larios Nº1\",\"39183471\",\"1995/11/25\"),"
