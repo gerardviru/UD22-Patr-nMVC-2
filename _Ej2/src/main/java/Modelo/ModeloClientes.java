@@ -25,59 +25,6 @@ public class ModeloClientes {
 		}
 	}
 
-	public ArrayList<Cliente> mostrarTodos() {
-
-		try {
-			String sqlQuery = "SELECT * FROM clientes;";
-			ResultSet rs = mysql.getAllRows("VideoClub", sqlQuery);
-
-			ArrayList<Cliente> arrClientes = new ArrayList<Cliente>();
-
-			while (rs.next()) {
-				// Crear cliente y anadirlo al array
-				Cliente cliente = new Cliente(rs.getLong("ID"), rs.getString("Nombre"), rs.getString("Apellido"),
-						rs.getString("Direccion"), rs.getString("DNI"), rs.getDate("Fecha"));
-
-				arrClientes.add(cliente);
-			}
-
-			return arrClientes;
-
-		} catch (Exception e) {
-			System.out.println("Fallo mostrar registros");
-			System.out.println(e);
-
-			return new ArrayList<Cliente>();
-		}
-
-	}
-
-	public Cliente mostrarPorId(Long id) {
-
-		Cliente cliente = new Cliente();
-		ResultSet rs = mysql.getRow("clientes", id);
-
-		try {
-			rs.next();
-			cliente.setID(rs.getLong("ID"));
-			cliente.setNombre(rs.getString("Nombre"));
-			cliente.setApellido(rs.getString("Apellido"));
-			cliente.setDireccion(rs.getString("Direccion"));
-			cliente.setDNI(rs.getString("DNI"));
-			cliente.setFecha(rs.getDate("Fecha"));
-
-			return cliente;
-		} catch (SQLException e) {
-
-			System.out.println("Fallo modelo clientes al buscar por id");
-			System.out.println(e);
-			
-			return new Cliente();
-		}
-
-
-	}
-
 	public void update(Cliente cliente) {
 
 		try {
@@ -91,7 +38,60 @@ public class ModeloClientes {
 
 	}
 	
+	public Cliente mostrarPorId(Long id) {
+	
+		Cliente cliente = new Cliente();
+		ResultSet rs = mysql.getRow("clientes", id);
+	
+		try {
+			rs.next();
+			cliente.setID(rs.getLong("ID"));
+			cliente.setNombre(rs.getString("Nombre"));
+			cliente.setApellido(rs.getString("Apellido"));
+			cliente.setDireccion(rs.getString("Direccion"));
+			cliente.setDNI(rs.getString("DNI"));
+			cliente.setFecha(rs.getDate("Fecha"));
+	
+			return cliente;
+		} catch (SQLException e) {
+	
+			System.out.println("Fallo modelo clientes al buscar por id");
+			System.out.println(e);
+			
+			return new Cliente();
+		}
+	
+	
+	}
+
 	public void delete(Long id) {
 		mysql.deleteRow("clientes", id);
+	}
+
+	public ArrayList<Cliente> mostrarTodos() {
+	
+		try {
+			String sqlQuery = "SELECT * FROM clientes;";
+			ResultSet rs = mysql.getAllRows("VideoClub", sqlQuery);
+	
+			ArrayList<Cliente> arrClientes = new ArrayList<Cliente>();
+	
+			while (rs.next()) {
+				// Crear cliente y anadirlo al array
+				Cliente cliente = new Cliente(rs.getLong("ID"), rs.getString("Nombre"), rs.getString("Apellido"),
+						rs.getString("Direccion"), rs.getString("DNI"), rs.getDate("Fecha"));
+	
+				arrClientes.add(cliente);
+			}
+	
+			return arrClientes;
+	
+		} catch (Exception e) {
+			System.out.println("Fallo mostrar registros");
+			System.out.println(e);
+	
+			return new ArrayList<Cliente>();
+		}
+	
 	}
 }

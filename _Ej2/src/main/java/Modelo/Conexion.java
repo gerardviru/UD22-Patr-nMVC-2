@@ -9,21 +9,6 @@ public class Conexion {
 		this.mysql = conexionMySQL;
 	}
 
-//	public void crearDB() {
-//		
-//		/* Crear base de datos Clientes */
-//		
-//		mysql.createDB("VideoClub");
-//		
-//		/* Crear tabla cliente */
-//		
-//		sqlQuery = "CREATE TABLE IF NOT EXISTS clientes (" + "ID INT(11) PRIMARY KEY NOT NULL AUTO_INCREMENT,"
-//				+ "Nombre VARCHAR(100) DEFAULT NULL ," + "Apellido VARCHAR(100) DEFAULT NULL,"
-//				+ "Direccion VARCHAR(100) DEFAULT NULL," + "DNI INT(11) DEFAULT NULL," + "Fecha date DEFAULT NULL);";
-//		
-//		mysql.insertQuery("VideoClub", sqlQuery);
-//		
-//	}
 	public void crearTablaClientes() {
 
 		/* Crear tabla cliente */

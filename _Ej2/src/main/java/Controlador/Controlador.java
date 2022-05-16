@@ -119,8 +119,8 @@ public class Controlador {
 					for (int i = 0; i < clientes.size(); i++) {
 						Cliente cliente = clientes.get(i);
 						String stringCliente = cliente.getID() + ".   " + cliente.getNombre() + ",   "
-								+ cliente.getApellido()+",   " + cliente.getDireccion() + ",   " + cliente.getDNI() + ",   "
-								+ cliente.getFecha() + ",   " + "\n";
+								+ cliente.getApellido() + ",   " + cliente.getDireccion() + ",   " + cliente.getDNI()
+								+ ",   " + cliente.getFecha() + ",   " + "\n";
 						vistaPrincipal.getTextArea().append(stringCliente);
 
 					}
@@ -183,7 +183,7 @@ public class Controlador {
 					conexion.crearTablaVideos();
 					conexion.insertarRegistrosClientes();
 					conexion.insertarRegistrosVideos();
-					
+
 					// Instanciar Modelos
 					modeloClientes = new ModeloClientes(conexionMySQL);
 					modeloVideos = new ModeloVideos(conexionMySQL);
@@ -211,159 +211,228 @@ public class Controlador {
 
 	private void listenerNuevoClienteMenu() {
 		vistaPrincipal.nuevoClienteMenu.addActionListener(new ActionListener() {
-			
+
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				vistaC_cli = new VistaC_cli();
 				vistaC_cli.setVisible(true);
 				vistaC_cli.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 				vistaC_cli.btnEnviarDatos.addActionListener(new ActionListener() {
-					
+
 					@Override
 					public void actionPerformed(ActionEvent e) {
-						Cliente cliente = new Cliente();
-						cliente.setNombre(vistaC_cli.txtField_Nombre.getText());
-						cliente.setApellido(vistaC_cli.txtField_Apellido.getText());
-						cliente.setDireccion(vistaC_cli.txtField_Direccion.getText());
-						cliente.setDNI(vistaC_cli.txtField_DNI.getText());
-						cliente.setFecha(Date.valueOf(vistaC_cli.txtField_Fecha.getText()));
-						
-						modeloClientes.insertar(cliente);
-						
+						try {
+							Cliente cliente = new Cliente();
+							cliente.setNombre(vistaC_cli.txtField_Nombre.getText());
+							cliente.setApellido(vistaC_cli.txtField_Apellido.getText());
+							cliente.setDireccion(vistaC_cli.txtField_Direccion.getText());
+							cliente.setDNI(vistaC_cli.txtField_DNI.getText());
+							cliente.setFecha(Date.valueOf(vistaC_cli.txtField_Fecha.getText()));
+
+							modeloClientes.insertar(cliente);
+							JOptionPane dialog = new JOptionPane();
+							dialog.showMessageDialog(null, "Registro cliente insertado correctamente!");
+						} catch (Exception e2) {
+							JOptionPane dialog = new JOptionPane();
+							dialog.showMessageDialog(null, "Error al insertar registro cliente");
+						}
+
 					}
 				});
 			}
 		});
-		
+
 	}
+
+	/**
+	 * Accion al pulsar el boton Menu->nuevo->video
+	 */
 	private void listenerNuevoVideoMenu() {
 		vistaPrincipal.nuevoVideoMenu.addActionListener(new ActionListener() {
-			
+
 			@Override
 			public void actionPerformed(ActionEvent e) {
-			
+
 				vistaC_vid = new VistaC_vid();
 				vistaC_vid.setVisible(true);
 				vistaC_vid.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 				vistaC_vid.btnEnviarDatos.addActionListener(new ActionListener() {
-					
+
 					@Override
 					public void actionPerformed(ActionEvent e) {
-						Video video = new Video();
-						video.setTitle(vistaC_vid.txtField_Title.getText());
-						video.setDirector(vistaC_vid.txtField_Director.getText());
-						video.setId_cli(Integer.parseInt(vistaC_vid.txtField_ID_Cli.getText()));
-						
-						modeloVideos.insertar(video);
-						
+
+						try {
+							Video video = new Video();
+							video.setTitle(vistaC_vid.txtField_Title.getText());
+							video.setDirector(vistaC_vid.txtField_Director.getText());
+							video.setId_cli(Integer.parseInt(vistaC_vid.txtField_ID_Cli.getText()));
+
+							modeloVideos.insertar(video);
+							JOptionPane dialog = new JOptionPane();
+							dialog.showMessageDialog(null, "Registro video insertado correctamente!");
+						} catch (Exception e2) {
+							JOptionPane dialog = new JOptionPane();
+							dialog.showMessageDialog(null, "Error al insertar registro video");
+						}
 					}
 				});
 			}
 		});
-		
+
 	}
+
+	/**
+	 * Menu boton buscar cliente
+	 */
 	private void listenerBuscarClienteMenu() {
 		vistaPrincipal.buscarClienteMenu.addActionListener(new ActionListener() {
-			
+
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				vistaU = new VistaU();
 				vistaU.setVisible(true);
 				vistaU.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+
+				// Buscar cliente
 				vistaU.btnBuscar.addActionListener(new ActionListener() {
-					
 					@Override
 					public void actionPerformed(ActionEvent e) {
-						Cliente cliente = modeloClientes.mostrarPorId(Long.parseLong(vistaU.textFieldId.getText()));
-						
-						vistaU.textFieldNombre.setText(cliente.getNombre());
-						vistaU.textFieldApellido.setText(cliente.getApellido());
-						vistaU.textFieldDireccion.setText(cliente.getDireccion());
-						vistaU.textFieldDni.setText(cliente.getDNI());
-						vistaU.textFieldFecha.setText(String.valueOf(cliente.getFecha()));
-						
+						try {
+							Cliente cliente = modeloClientes.mostrarPorId(Long.parseLong(vistaU.textFieldId.getText()));
+
+							vistaU.textFieldNombre.setText(cliente.getNombre());
+							vistaU.textFieldApellido.setText(cliente.getApellido());
+							vistaU.textFieldDireccion.setText(cliente.getDireccion());
+							vistaU.textFieldDni.setText(cliente.getDNI());
+							vistaU.textFieldFecha.setText(String.valueOf(cliente.getFecha()));
+
+						} catch (Exception e2) {
+							JOptionPane dialog = new JOptionPane();
+							dialog.showMessageDialog(null, "No se ha encontrado el registro.");
+						}
+
 					}
 				});
+
+				// Actualizar Cliente
 				vistaU.btnEnviarDatos.addActionListener(new ActionListener() {
-					
 					@Override
 					public void actionPerformed(ActionEvent e) {
-						Cliente cliente = new Cliente();
-						cliente.setID(Long.parseLong(vistaU.textFieldId.getText()));
-						cliente.setNombre(vistaU.textFieldNombre.getText());
-						cliente.setApellido(vistaU.textFieldApellido.getText());
-						cliente.setDireccion(vistaU.textFieldDireccion.getText());
-						cliente.setDNI(vistaU.textFieldDni.getText());
-						cliente.setFecha(Date.valueOf(vistaU.textFieldFecha.getText()));
-						
-						modeloClientes.update(cliente);
-						
+
+						try {
+							Cliente cliente = new Cliente();
+							cliente.setID(Long.parseLong(vistaU.textFieldId.getText()));
+							cliente.setNombre(vistaU.textFieldNombre.getText());
+							cliente.setApellido(vistaU.textFieldApellido.getText());
+							cliente.setDireccion(vistaU.textFieldDireccion.getText());
+							cliente.setDNI(vistaU.textFieldDni.getText());
+							cliente.setFecha(Date.valueOf(vistaU.textFieldFecha.getText()));
+
+							modeloClientes.update(cliente);
+							JOptionPane dialog = new JOptionPane();
+							dialog.showMessageDialog(null, "Registro actualizado con éxito!");
+						} catch (Exception e2) {
+							JOptionPane dialog = new JOptionPane();
+							dialog.showMessageDialog(null, "No se ha podido actualizar el registro.");
+						}
+
 					}
 				});
 				vistaU.btnEliminar.addActionListener(new ActionListener() {
-					
+
 					@Override
 					public void actionPerformed(ActionEvent e) {
-						modeloClientes.delete(Long.parseLong(vistaU.textFieldId.getText()));
-						
+						try {
+							modeloClientes.delete(Long.parseLong(vistaU.textFieldId.getText()));
+							JOptionPane dialog = new JOptionPane();
+							dialog.showMessageDialog(null, "Se ha eliminado el registro!");
+						} catch (Exception e2) {
+							JOptionPane dialog = new JOptionPane();
+							dialog.showMessageDialog(null, "No se ha podido eliminar el registro.");
+						}
+
 					}
 				});
 			}
 		});
-		
+
 	}
+
+	/**
+	 * Menu boton buscar video
+	 */
 	private void listenerBuscarVideoMenu() {
 
-		
-	vistaPrincipal.buscarClienteMenu.addActionListener(new ActionListener() {
-			
+		vistaPrincipal.buscarVideoMenu.addActionListener(new ActionListener() {
+
+			// Accion click boton menu -> buscar -> video
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				vistaUVid = new VistaUVid();
 				vistaUVid.setVisible(true);
 				vistaUVid.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+
+				// Buscar Video
 				vistaUVid.btnBuscar.addActionListener(new ActionListener() {
-					
 					@Override
 					public void actionPerformed(ActionEvent e) {
-						Cliente cliente = modeloClientes.mostrarPorId(Long.parseLong(vistaU.textFieldId.getText()));
-						
-						vistaU.textFieldNombre.setText(cliente.getNombre());
-						vistaU.textFieldApellido.setText(cliente.getApellido());
-						vistaU.textFieldDireccion.setText(cliente.getDireccion());
-						vistaU.textFieldDni.setText(cliente.getDNI());
-						vistaU.textFieldFecha.setText(String.valueOf(cliente.getFecha()));
-						
+
+						try {
+							Video video = modeloVideos.mostrarPorId(Long.parseLong(vistaUVid.textFieldId.getText()));
+
+							vistaUVid.textFieldTitle.setText(video.getTitle());
+							vistaUVid.textFieldDirector.setText(video.getDirector());
+							vistaUVid.textFieldIdCliente.setText(String.valueOf(video.getId_cli()));
+						} catch (Exception e2) {
+							JOptionPane dialog = new JOptionPane();
+							dialog.showMessageDialog(null, "No se ha encontrado el registro del video.");
+						}
+
 					}
 				});
-				vistaU.btnEnviarDatos.addActionListener(new ActionListener() {
-					
+
+				// Actualizar Video
+				vistaUVid.btnEnviarDatos.addActionListener(new ActionListener() {
 					@Override
 					public void actionPerformed(ActionEvent e) {
-						Cliente cliente = new Cliente();
-						cliente.setID(Long.parseLong(vistaU.textFieldId.getText()));
-						cliente.setNombre(vistaU.textFieldNombre.getText());
-						cliente.setApellido(vistaU.textFieldApellido.getText());
-						cliente.setDireccion(vistaU.textFieldDireccion.getText());
-						cliente.setDNI(vistaU.textFieldDni.getText());
-						cliente.setFecha(Date.valueOf(vistaU.textFieldFecha.getText()));
-						
-						modeloClientes.update(cliente);
-						
+						try {
+							Video video = new Video();
+							video.setID(Long.parseLong(vistaUVid.textFieldId.getText()));
+							video.setTitle(vistaUVid.textFieldTitle.getText());
+							video.setDirector(vistaUVid.textFieldDirector.getText());
+							video.setId_cli(Integer.valueOf(vistaUVid.textFieldIdCliente.getText()));
+
+							modeloVideos.update(video);
+
+							JOptionPane dialog = new JOptionPane();
+							dialog.showMessageDialog(null, "Se ha actualizado el registro!");
+						} catch (Exception e2) {
+							JOptionPane dialog = new JOptionPane();
+							dialog.showMessageDialog(null, "No se ha podido actualizar el registro.");
+						}
+
 					}
 				});
-				vistaU.btnEliminar.addActionListener(new ActionListener() {
-					
+				// Delete Video
+				vistaUVid.btnEliminar.addActionListener(new ActionListener() {
+
 					@Override
 					public void actionPerformed(ActionEvent e) {
-						modeloClientes.delete(Long.parseLong(vistaU.textFieldId.getText()));
 						
+						try {
+							modeloVideos.delete(Long.parseLong(vistaUVid.textFieldId.getText()));
+							JOptionPane dialog = new JOptionPane();
+							dialog.showMessageDialog(null, "Se ha eliminado el registro.");
+						} catch (Exception e2) {
+							JOptionPane dialog = new JOptionPane();
+							dialog.showMessageDialog(null, "No se ha podido eliminar el registro.");
+						}
+
 					}
 				});
 			}
 		});
-		
-		
+
 	}
 
 }
