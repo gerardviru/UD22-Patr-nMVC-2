@@ -12,15 +12,18 @@ import Modelo.Cliente;
 import Modelo.Conexion;
 import Modelo.ConexionMySQL;
 import Modelo.ModeloClientes;
+import Modelo.ModeloVideos;
+import Modelo.Video;
 import Vista.VistaPrincipal;
 
 public class Controlador {
-	
+
 	// Attributes
 	private VistaPrincipal vistaPrincipal;
 	private ConexionMySQL conexionMySQL;
 	private ModeloClientes modeloClientes;
-	
+	private ModeloVideos modeloVideos;
+
 	// Constructors
 	public Controlador() {
 	}
@@ -52,9 +55,7 @@ public class Controlador {
 	public void setConexionMySQL(ConexionMySQL conexionMySQL) {
 		this.conexionMySQL = conexionMySQL;
 	}
-	
-	
-	
+
 	/**
 	 * @return the modeloClientes
 	 */
@@ -74,14 +75,14 @@ public class Controlador {
 	 */
 	public void init() {
 		// Inicializar la vista principal
-		VistaPrincipal vistaPrincipal = new VistaPrincipal();
-		vistaPrincipal.crearVista(this);
-		
+		vistaPrincipal = new VistaPrincipal();
+		vistaPrincipal.setVisible(true);
+
 		// Inicializar conexion mysql
 		conexionMySQL = new ConexionMySQL();
 		conexionMySQL.conectar();
 		conexionMySQL.dropDB("VideoClub");
-		
+
 		// Crear base de datos si no existe
 		conexionMySQL.createDB("VideoClub");
 		Conexion conexion = new Conexion(conexionMySQL);
@@ -89,10 +90,55 @@ public class Controlador {
 		conexion.crearTablaVideos();
 		conexion.insertarRegistrosClientes();
 		conexion.insertarRegistrosVideos();
-		
-		modeloClientes = new ModeloClientes(conexionMySQL);
-		ArrayList<Cliente> clientes = modeloClientes.mostrarTodos();
-		
+
+		listenerActualziarBtn();
+
 	}
-	
+
+	/**
+	 * Accion boton "Actualizar"
+	 */
+	public void listenerActualziarBtn() {
+		vistaPrincipal.actualizarBtn.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+
+				int selItem = vistaPrincipal.desplegable.getSelectedIndex();
+				
+				switch (selItem) {
+				case 0:
+					modeloClientes = new ModeloClientes(conexionMySQL);
+					ArrayList<Cliente> clientes = modeloClientes.mostrarTodos();
+
+					vistaPrincipal.getTextArea().setText("");
+					for (int i = 0; i < clientes.size(); i++) {
+						Cliente cliente = clientes.get(i);
+						String stringCliente = cliente.getID() + ". " + cliente.getNombre() + ", " + cliente.getApellido() 
+						+ cliente.getDirección() + ", " + cliente.getDNI() + ", " + cliente.getFecha() + ", " + "\n";
+						vistaPrincipal.getTextArea().append(stringCliente);
+
+					}
+					break;
+				case 1:
+					modeloVideos = new ModeloVideos(conexionMySQL);
+					ArrayList<Video> videos = modeloVideos.mostrarTodos();
+					
+					vistaPrincipal.getTextArea().setText("");
+					for (int i = 0; i < videos.size(); i++) {
+						Video video = videos.get(i);
+						vistaPrincipal.getTextArea().append(video.getID() + ". " + video.getTitle() + ", " + video.getDirector() + ", " + video.getId_cli() + "\n");
+						
+					}
+					break;
+
+				default:
+
+					break;
+				}
+
+			}
+		});
+	}
+
 }

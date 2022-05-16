@@ -2,7 +2,8 @@ package Modelo;
 
 public class Video {
 
-	private String tittle;
+	private Long ID; 
+	private String title;
 	private String director;
 	private Integer id_cli;
 	
@@ -13,30 +14,31 @@ public class Video {
 	
 	
 
-	public Video(String tittle, String director) {
-		this.tittle = tittle;
+	public Video(String title, String director) {
+		this.title = title;
 		this.director = director;
 		this.id_cli = null;
 	}
 
 
 
-	public Video(String tittle, String director, int id_cli) {
-		this.tittle = tittle;
+	public Video(Long ID, String title, String director, int id_cli) {
+		this.ID = ID;
+		this.title = title;
 		this.director = director;
 		this.id_cli = id_cli;
 	}
 
 	//Getters & Setters
 
-	public String getTittle() {
-		return tittle;
+	public String getTitle() {
+		return title;
 	}
 
 
 
-	public void setTittle(String tittle) {
-		this.tittle = tittle;
+	public void setTitle(String title) {
+		this.title = title;
 	}
 
 
@@ -62,11 +64,21 @@ public class Video {
 	public void setId_cli(Integer id_cli) {
 		this.id_cli = id_cli;
 	}
+	
+	
+	public Long getID() {
+		return ID;
+	}
+
+	public void setID(Long iD) {
+		ID = iD;
+	}
+
 
 
 	@Override
 	public String toString() {
-		return "Video [tittle=" + tittle + ", director=" + director + ", id_cli=" + id_cli + "]";
+		return "Video [title=" + title + ", director=" + director + ", id_cli=" + id_cli + "]";
 	}
 	
 	

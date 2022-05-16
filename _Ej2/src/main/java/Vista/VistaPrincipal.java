@@ -8,6 +8,9 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 import javax.swing.JComboBox;
 import java.awt.Color;
 import javax.swing.JTable;
@@ -26,26 +29,10 @@ import javax.swing.JTextArea;
 public class VistaPrincipal extends JFrame {
 
 	public JPanel contentPane;
-	private JButton actualizarBtn;
+	public JButton actualizarBtn;
 	private Controlador controlador;
 	private JTextArea textArea;
-
-	/**
-	 * Launch the application.
-	 */
-	public void crearVista(Controlador controlador) {
-		this.controlador = controlador;
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					VistaPrincipal frame = new VistaPrincipal();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
+	public JComboBox<String> desplegable;
 
 	/**
 	 * Create the frame.
@@ -91,8 +78,8 @@ public class VistaPrincipal extends JFrame {
 		tituloLable.setBounds(172, 24, 261, 22);
 		contentPane.add(tituloLable);
 		
-		JComboBox<String> desplegable = new JComboBox<String>();
-		desplegable.setModel(new DefaultComboBoxModel<String>(new String[] {"Tabla Cliente", "Tabla Video", "Ambas Tablas"}));
+		desplegable = new JComboBox<String>();
+		desplegable.setModel(new DefaultComboBoxModel<String>(new String[] {"Tabla Cliente", "Tabla Video"}));
 		desplegable.setBounds(229, 92, 183, 31);
 		contentPane.add(desplegable);
 		
