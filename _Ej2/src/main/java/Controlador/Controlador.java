@@ -4,6 +4,7 @@ import java.awt.Point;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.ObjectInputFilter.Config;
+import java.sql.Date;
 import java.util.ArrayList;
 
 import javax.swing.JFrame;
@@ -30,6 +31,10 @@ public class Controlador {
 	// Attributes
 	private VistaConexion vistaConexion;
 	private VistaPrincipal vistaPrincipal;
+	private VistaC_cli vistaC_cli;
+	private VistaC_vid vistaC_vid;
+	private VistaU vistaU;
+	private VistaUVid vistaUVid;
 	private ConexionMySQL conexionMySQL;
 	private ModeloClientes modeloClientes;
 	private ModeloVideos modeloVideos;
@@ -114,7 +119,7 @@ public class Controlador {
 					for (int i = 0; i < clientes.size(); i++) {
 						Cliente cliente = clientes.get(i);
 						String stringCliente = cliente.getID() + ". " + cliente.getNombre() + ", "
-								+ cliente.getApellido() + cliente.getDirección() + ", " + cliente.getDNI() + ", "
+								+ cliente.getApellido() + cliente.getDireccion() + ", " + cliente.getDNI() + ", "
 								+ cliente.getFecha() + ", " + "\n";
 						vistaPrincipal.getTextArea().append(stringCliente);
 
@@ -178,6 +183,10 @@ public class Controlador {
 					conexion.crearTablaVideos();
 					conexion.insertarRegistrosClientes();
 					conexion.insertarRegistrosVideos();
+					
+					// Instanciar Modelos
+					modeloClientes = new ModeloClientes(conexionMySQL);
+					modeloVideos = new ModeloVideos(conexionMySQL);
 
 				} else {
 					JOptionPane dialog = new JOptionPane();
@@ -205,9 +214,50 @@ public class Controlador {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				VistaC_cli vistaCli = new VistaC_cli();
-				vistaCli.setVisible(true);
-				vistaCli.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+				vistaC_cli = new VistaC_cli();
+				vistaC_cli.setVisible(true);
+				vistaC_cli.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+				vistaC_cli.btnEnviarDatos.addActionListener(new ActionListener() {
+					
+					@Override
+					public void actionPerformed(ActionEvent e) {
+						Cliente cliente = new Cliente();
+						cliente.setNombre(vistaC_cli.txtField_Nombre.getText());
+						cliente.setApellido(vistaC_cli.txtField_Apellido.getText());
+						cliente.setDireccion(vistaC_cli.txtField_Direccion.getText());
+						cliente.setDNI(vistaC_cli.txtField_DNI.getText());
+						cliente.setFecha(Date.valueOf(vistaC_cli.txtField_Fecha.getText()));
+						
+						modeloClientes.insertar(cliente);
+						
+					}
+				});
+			}
+		});
+		
+	}
+	private void listenerNuevoVideoMenu() {
+		vistaPrincipal.nuevoVideoMenu.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+			
+				vistaC_vid = new VistaC_vid();
+				vistaC_vid.setVisible(true);
+				vistaC_vid.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+				vistaC_vid.btnEnviarDatos.addActionListener(new ActionListener() {
+					
+					@Override
+					public void actionPerformed(ActionEvent e) {
+						Video video = new Video();
+						video.setTitle(vistaC_vid.txtField_Title.getText());
+						video.setDirector(vistaC_vid.txtField_Director.getText());
+						video.setId_cli(Integer.parseInt(vistaC_vid.txtField_ID_Cli.getText()));
+						
+						modeloVideos.insertar(video);
+						
+					}
+				});
 			}
 		});
 		
@@ -236,16 +286,5 @@ public class Controlador {
 		});
 		
 	}
-	private void listenerNuevoVideoMenu() {
-		vistaPrincipal.nuevoVideoMenu.addActionListener(new ActionListener() {
-			
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				VistaC_vid vistaVid = new VistaC_vid();
-				vistaVid.setVisible(true);
-				vistaVid.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-			}
-		});
-		
-	}
+
 }

@@ -25,22 +25,6 @@ public class VistaU extends JFrame {
 	private JTextField textField_4;
 
 	/**
-	 * Launch the application.
-	 */
-	public static void vistaU() {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					VistaU frame = new VistaU();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
-	/**
 	 * Create the frame.
 	 */
 	public VistaU() {

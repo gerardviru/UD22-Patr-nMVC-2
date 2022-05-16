@@ -21,22 +21,6 @@ public class VistaUVid extends JFrame {
 	private JTextField textField_2;
 
 	/**
-	 * Launch the application.
-	 */
-	public static void vistaUVid() {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					VistaUVid frame = new VistaUVid();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
-	/**
 	 * Create the frame.
 	 */
 	public VistaUVid() {

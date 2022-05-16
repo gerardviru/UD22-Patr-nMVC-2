@@ -15,9 +15,9 @@ public class ModeloClientes {
 	public void insertar(Cliente cliente) {
 
 		try {
-			String sqlQuery = "INSERT INTO clientes (Nombre, Apellido, Dirección, DNI, Fecha) VALUE (\""
-					+ cliente.getNombre() + "\",\"" + cliente.getApellido() + "\",\"" + cliente.getDirección() + "\",\""
-					+ cliente.getDNI() + "\",\"" + cliente.getFecha() + ");";
+			String sqlQuery = "INSERT INTO clientes (Nombre, Apellido, Direccion, DNI, Fecha) VALUE (\""
+					+ cliente.getNombre() + "\",\"" + cliente.getApellido() + "\",\"" + cliente.getDireccion() + "\",\""
+					+ cliente.getDNI() + "\",\"" + cliente.getFecha() + "\");";
 			mysql.insertQuery("VideoClub", sqlQuery);
 		} catch (Exception e) {
 			System.out.println("Fallo insercion modelo cliente");
@@ -54,7 +54,7 @@ public class ModeloClientes {
 	public void update(Cliente cliente) {
 
 		try {
-			String sqlQuery = "UPDATE clientes SET (Nombre, Apellido, Dirección, DNI, Fecha) WHERE ID = "
+			String sqlQuery = "UPDATE clientes SET (Nombre, Apellido, Direccion, DNI, Fecha) WHERE ID = "
 					+ cliente.getID() + ";";
 			mysql.insertQuery("VideoClub", sqlQuery);
 

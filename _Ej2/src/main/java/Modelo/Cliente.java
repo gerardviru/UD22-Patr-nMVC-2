@@ -7,7 +7,7 @@ public class Cliente {
 	private Long ID;
 	private String Nombre;
 	private String Apellido;
-	private String Dirección;
+	private String Direccion;
 	private String DNI;
 	private Date Fecha;
 	
@@ -15,12 +15,12 @@ public class Cliente {
 		
 	}
 
-	public Cliente(Long iD, String nombre, String apellido, String dirección, String dni, Date fecha) {
+	public Cliente(Long iD, String nombre, String apellido, String direccion, String dni, Date fecha) {
 		
 		ID = iD;
 		Nombre = nombre;
 		Apellido = apellido;
-		Dirección = dirección;
+		Direccion = direccion;
 		DNI = dni;
 		Fecha = fecha;
 	}
@@ -51,12 +51,12 @@ public class Cliente {
 		Apellido = apellido;
 	}
 
-	public String getDirección() {
-		return Dirección;
+	public String getDireccion() {
+		return Direccion;
 	}
 
-	public void setDirección(String dirección) {
-		Dirección = dirección;
+	public void setDireccion(String Direccion) {
+		Direccion = Direccion;
 	}
 
 	public String getDNI() {
@@ -77,7 +77,7 @@ public class Cliente {
 
 	@Override
 	public String toString() {
-		return "Cliente [ID=" + ID + ", Nombre=" + Nombre + ", Apellido=" + Apellido + ", Dirección=" + Dirección
+		return "Cliente [ID=" + ID + ", Nombre=" + Nombre + ", Apellido=" + Apellido + ", Direccion=" + Direccion
 				+ ", DNI=" + DNI + ", Fecha=" + Fecha + "]";
 	}
 	

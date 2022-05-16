@@ -13,26 +13,11 @@ import javax.swing.JButton;
 
 public class VistaC_vid extends JFrame {
 
-	private JPanel contentPane;
-	private JTextField TxtField_Title;
-	private JTextField TxtField_Director;
-	private JTextField TxtField_ID_Cli;
-
-	/**
-	 * Launch the application.
-	 */
-	public static void vista() {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					VistaC_vid frame = new VistaC_vid();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
+	public JPanel contentPane;
+	public JTextField txtField_Title;
+	public JTextField txtField_Director;
+	public JTextField txtField_ID_Cli;
+	public JButton btnEnviarDatos;
 
 	/**
 	 * Creacion de la vista Creación Tabla.
@@ -56,30 +41,30 @@ public class VistaC_vid extends JFrame {
 		lblTitle.setBounds(20, 45, 86, 14);
 		contentPane.add(lblTitle);
 		
-		TxtField_Title = new JTextField();
-		TxtField_Title.setBounds(20, 69, 185, 20);
-		contentPane.add(TxtField_Title);
-		TxtField_Title.setColumns(10);
+		txtField_Title = new JTextField();
+		txtField_Title.setBounds(20, 69, 185, 20);
+		contentPane.add(txtField_Title);
+		txtField_Title.setColumns(10);
 		
 		JLabel lblDirector = new JLabel("Director: ");
 		lblDirector.setBounds(20, 111, 86, 14);
 		contentPane.add(lblDirector);
 		
-		TxtField_Director = new JTextField();
-		TxtField_Director.setColumns(10);
-		TxtField_Director.setBounds(20, 136, 185, 20);
-		contentPane.add(TxtField_Director);
+		txtField_Director = new JTextField();
+		txtField_Director.setColumns(10);
+		txtField_Director.setBounds(20, 136, 185, 20);
+		contentPane.add(txtField_Director);
 		
 		JLabel lblID_cli = new JLabel("ID Cliente:");
 		lblID_cli.setBounds(20, 184, 86, 14);
 		contentPane.add(lblID_cli);
 		
-		TxtField_ID_Cli = new JTextField();
-		TxtField_ID_Cli.setColumns(10);
-		TxtField_ID_Cli.setBounds(20, 209, 185, 20);
-		contentPane.add(TxtField_ID_Cli);
+		txtField_ID_Cli = new JTextField();
+		txtField_ID_Cli.setColumns(10);
+		txtField_ID_Cli.setBounds(20, 209, 185, 20);
+		contentPane.add(txtField_ID_Cli);
 		
-		JButton btnEnviarDatos = new JButton("Aceptar");
+		btnEnviarDatos = new JButton("Aceptar");
 		btnEnviarDatos.setFont(new Font("SansSerif", Font.PLAIN, 11));
 		btnEnviarDatos.setBounds(20, 273, 89, 23);
 		contentPane.add(btnEnviarDatos);

@@ -14,8 +14,8 @@ public class ModeloVideos {
 	public void insertar(Video video) {
 
 		try {
-			String sqlQuery = "INSERT INTO videos (Titulo, Director, ID_cli) VALUE (\""
-					+ video.getTitle() + "\",\"" + video.getDirector() + "\",\"" + video.getId_cli() + ");";
+			String sqlQuery = "INSERT INTO videos (Title, Director, ID_cli) VALUE (\""
+					+ video.getTitle() + "\",\"" + video.getDirector() + "\"," + video.getId_cli() + ");";
 			mysql.insertQuery("VideoClub", sqlQuery);
 		} catch (Exception e) {
 			System.out.println("Fallo insercion modelo video");
