@@ -18,8 +18,7 @@ public class VistaConexion extends JFrame {
 	public JPanel contentPane;
 	public JTextField textFieldIP;
 	public JTextField textFieldUser;
-	public JTextField passwordField;
-	public JPasswordField passwordField2;
+	public JPasswordField passwordField;
 	public JButton btnConectar;
 
 	/**
@@ -69,14 +68,8 @@ public class VistaConexion extends JFrame {
 		btnConectar.setBounds(23, 314, 89, 23);
 		contentPane.add(btnConectar);
 		
-		passwordField2 = new JPasswordField();
-		passwordField2.setBounds(23, 348, 185, 20);
-		contentPane.add(passwordField2);
-		
-		passwordField = new JTextField();
-		passwordField.setText("Reus_2022");
-		passwordField.setColumns(10);
-		passwordField.setBounds(23, 280, 185, 20);
+		passwordField = new JPasswordField();
+		passwordField.setBounds(23, 249, 185, 20);
 		contentPane.add(passwordField);
 	}
 }

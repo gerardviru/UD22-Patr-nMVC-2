@@ -28,7 +28,7 @@ public class Conexion {
 		sqlQuery = "CREATE TABLE IF NOT EXISTS videos(" + "ID INT(11) PRIMARY KEY NOT NULL AUTO_INCREMENT,"
 				+ "Title VARCHAR(100) DEFAULT NULL ," + "Director VARCHAR(100) DEFAULT NULL,"
 				+ "ID_cli INT(11) DEFAULT NULL,"
-				+ "CONSTRAINT videos_fk FOREIGN KEY (ID_cli) REFERENCES clientes(ID) ON DELETE CASCADE ON UPDATE CASCADE);";
+				+ "CONSTRAINT videos_fk FOREIGN KEY (ID_cli) REFERENCES clientes(ID) ON DELETE SET NULL ON UPDATE CASCADE);";
 
 		mysql.insertQuery("VideoClub", sqlQuery);
 	}
