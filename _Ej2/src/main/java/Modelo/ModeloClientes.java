@@ -1,6 +1,7 @@
 package Modelo;
 
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
@@ -31,17 +32,17 @@ public class ModeloClientes {
 			ResultSet rs = mysql.getAllRows("VideoClub", sqlQuery);
 
 			ArrayList<Cliente> arrClientes = new ArrayList<Cliente>();
-			
+
 			while (rs.next()) {
 				// Crear cliente y anadirlo al array
-				Cliente cliente = new Cliente(rs.getLong("ID"), rs.getString("Nombre"), rs.getString("Apellido"), rs.getString("Direccion"),
-						rs.getString("DNI"), rs.getDate("Fecha"));
-				
+				Cliente cliente = new Cliente(rs.getLong("ID"), rs.getString("Nombre"), rs.getString("Apellido"),
+						rs.getString("Direccion"), rs.getString("DNI"), rs.getDate("Fecha"));
+
 				arrClientes.add(cliente);
 			}
-			
+
 			return arrClientes;
-			
+
 		} catch (Exception e) {
 			System.out.println("Fallo mostrar registros");
 			System.out.println(e);
@@ -51,10 +52,36 @@ public class ModeloClientes {
 
 	}
 
+	public Cliente mostrarPorId(Long id) {
+
+		Cliente cliente = new Cliente();
+		ResultSet rs = mysql.getRow("clientes", id);
+
+		try {
+			rs.next();
+			cliente.setID(rs.getLong("ID"));
+			cliente.setNombre(rs.getString("Nombre"));
+			cliente.setApellido(rs.getString("Apellido"));
+			cliente.setDireccion(rs.getString("Direccion"));
+			cliente.setDNI(rs.getString("DNI"));
+			cliente.setFecha(rs.getDate("Fecha"));
+
+			return cliente;
+		} catch (SQLException e) {
+
+			System.out.println("Fallo modelo clientes al buscar por id");
+			System.out.println(e);
+			
+			return new Cliente();
+		}
+
+
+	}
+
 	public void update(Cliente cliente) {
 
 		try {
-			String sqlQuery = "UPDATE clientes SET (Nombre, Apellido, Direccion, DNI, Fecha) WHERE ID = "
+			String sqlQuery = "UPDATE clientes SET Nombre='"+cliente.getNombre()+"', Apellido='"+cliente.getApellido()+"' , Direccion='"+cliente.getDireccion()+"', DNI='"+ cliente.getDNI()+"', Fecha='"+cliente.getFecha()+"' WHERE ID = "
 					+ cliente.getID() + ";";
 			mysql.insertQuery("VideoClub", sqlQuery);
 
@@ -62,5 +89,9 @@ public class ModeloClientes {
 			System.out.println("Fallo Update modelo cliente");
 		}
 
+	}
+	
+	public void delete(Long id) {
+		mysql.deleteRow("clientes", id);
 	}
 }

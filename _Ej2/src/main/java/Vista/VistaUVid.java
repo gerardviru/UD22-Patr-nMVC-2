@@ -15,10 +15,14 @@ import javax.swing.JButton;
 
 public class VistaUVid extends JFrame {
 
-	private JPanel contentPane;
-	private JTextField textField;
-	private JTextField textField_1;
-	private JTextField textField_2;
+	public JPanel contentPane;
+	public JTextField textFieldId;
+	public JTextField textFieldTitle;
+	public JTextField textFieldDirector;
+	public JTextField textFieldIdCliente;
+	public JButton btnEnviarDatos;
+	public JButton btnEliminar;
+	public JButton btnBuscar;
 
 	/**
 	 * Create the frame.
@@ -41,46 +45,50 @@ public class VistaUVid extends JFrame {
 		lblNewLabel.setBounds(31, 63, 46, 14);
 		contentPane.add(lblNewLabel);
 		
-		JComboBox comboBox = new JComboBox();
-		comboBox.setBounds(31, 88, 30, 22);
-		contentPane.add(comboBox);
+		textFieldId = new JTextField();
+		textFieldId.setBounds(31, 88, 30, 22);
+		contentPane.add(textFieldId);
 		
 		JLabel lblTitle = new JLabel("Titulo:");
 		lblTitle.setBounds(31, 132, 86, 14);
 		contentPane.add(lblTitle);
 		
-		textField = new JTextField();
-		textField.setColumns(10);
-		textField.setBounds(31, 156, 185, 20);
-		contentPane.add(textField);
+		textFieldTitle = new JTextField();
+		textFieldTitle.setColumns(10);
+		textFieldTitle.setBounds(31, 156, 185, 20);
+		contentPane.add(textFieldTitle);
 		
 		JLabel lblDirector = new JLabel("Director: ");
 		lblDirector.setBounds(31, 198, 86, 14);
 		contentPane.add(lblDirector);
 		
-		textField_1 = new JTextField();
-		textField_1.setColumns(10);
-		textField_1.setBounds(31, 223, 185, 20);
-		contentPane.add(textField_1);
+		textFieldDirector = new JTextField();
+		textFieldDirector.setColumns(10);
+		textFieldDirector.setBounds(31, 223, 185, 20);
+		contentPane.add(textFieldDirector);
 		
 		JLabel lblID_cli = new JLabel("ID Cliente:");
 		lblID_cli.setBounds(31, 271, 86, 14);
 		contentPane.add(lblID_cli);
 		
-		textField_2 = new JTextField();
-		textField_2.setColumns(10);
-		textField_2.setBounds(31, 296, 185, 20);
-		contentPane.add(textField_2);
+		textFieldIdCliente = new JTextField();
+		textFieldIdCliente.setColumns(10);
+		textFieldIdCliente.setBounds(31, 296, 185, 20);
+		contentPane.add(textFieldIdCliente);
 		
-		JButton btnEnviarDatos_1 = new JButton("Actualizar");
-		btnEnviarDatos_1.setFont(new Font("SansSerif", Font.PLAIN, 11));
-		btnEnviarDatos_1.setBounds(28, 378, 89, 23);
-		contentPane.add(btnEnviarDatos_1);
+		btnEnviarDatos = new JButton("Actualizar");
+		btnEnviarDatos.setFont(new Font("SansSerif", Font.PLAIN, 11));
+		btnEnviarDatos.setBounds(28, 378, 89, 23);
+		contentPane.add(btnEnviarDatos);
 		
-		JButton btnEnviarDatos_1_1 = new JButton("Eliminar");
-		btnEnviarDatos_1_1.setFont(new Font("SansSerif", Font.PLAIN, 11));
-		btnEnviarDatos_1_1.setBounds(297, 379, 89, 23);
-		contentPane.add(btnEnviarDatos_1_1);
+		btnEliminar = new JButton("Eliminar");
+		btnEliminar.setFont(new Font("SansSerif", Font.PLAIN, 11));
+		btnEliminar.setBounds(297, 379, 89, 23);
+		contentPane.add(btnEliminar);
+		
+		btnBuscar = new JButton("🔍︎");
+		btnBuscar.setBounds(72, 88, 46, 23);
+		contentPane.add(btnBuscar);
 	}
 
 }

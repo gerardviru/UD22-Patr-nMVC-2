@@ -56,7 +56,7 @@ public class Cliente {
 	}
 
 	public void setDireccion(String Direccion) {
-		Direccion = Direccion;
+		this.Direccion = Direccion;
 	}
 
 	public String getDNI() {

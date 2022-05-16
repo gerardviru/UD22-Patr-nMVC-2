@@ -94,6 +94,7 @@ public class VistaPrincipal extends JFrame {
 		
 		textArea = new JTextArea();
 		textArea.setEditable(false);
+		textArea.setFont(new Font("SansSerif", Font.PLAIN, 12));
 		textArea.setBounds(113, 151, 404, 350);
 		contentPane.add(textArea);
 	}
@@ -125,5 +126,4 @@ public class VistaPrincipal extends JFrame {
 	public void setTextArea(JTextArea textArea) {
 		this.textArea = textArea;
 	}
-	
 }

@@ -118,9 +118,9 @@ public class Controlador {
 					vistaPrincipal.getTextArea().setText("");
 					for (int i = 0; i < clientes.size(); i++) {
 						Cliente cliente = clientes.get(i);
-						String stringCliente = cliente.getID() + ". " + cliente.getNombre() + ", "
-								+ cliente.getApellido() + cliente.getDireccion() + ", " + cliente.getDNI() + ", "
-								+ cliente.getFecha() + ", " + "\n";
+						String stringCliente = cliente.getID() + ".   " + cliente.getNombre() + ",   "
+								+ cliente.getApellido()+",   " + cliente.getDireccion() + ",   " + cliente.getDNI() + ",   "
+								+ cliente.getFecha() + ",   " + "\n";
 						vistaPrincipal.getTextArea().append(stringCliente);
 
 					}
@@ -267,23 +267,102 @@ public class Controlador {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				VistaU vistaU = new VistaU();
+				vistaU = new VistaU();
 				vistaU.setVisible(true);
 				vistaU.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+				vistaU.btnBuscar.addActionListener(new ActionListener() {
+					
+					@Override
+					public void actionPerformed(ActionEvent e) {
+						Cliente cliente = modeloClientes.mostrarPorId(Long.parseLong(vistaU.textFieldId.getText()));
+						
+						vistaU.textFieldNombre.setText(cliente.getNombre());
+						vistaU.textFieldApellido.setText(cliente.getApellido());
+						vistaU.textFieldDireccion.setText(cliente.getDireccion());
+						vistaU.textFieldDni.setText(cliente.getDNI());
+						vistaU.textFieldFecha.setText(String.valueOf(cliente.getFecha()));
+						
+					}
+				});
+				vistaU.btnEnviarDatos.addActionListener(new ActionListener() {
+					
+					@Override
+					public void actionPerformed(ActionEvent e) {
+						Cliente cliente = new Cliente();
+						cliente.setID(Long.parseLong(vistaU.textFieldId.getText()));
+						cliente.setNombre(vistaU.textFieldNombre.getText());
+						cliente.setApellido(vistaU.textFieldApellido.getText());
+						cliente.setDireccion(vistaU.textFieldDireccion.getText());
+						cliente.setDNI(vistaU.textFieldDni.getText());
+						cliente.setFecha(Date.valueOf(vistaU.textFieldFecha.getText()));
+						
+						modeloClientes.update(cliente);
+						
+					}
+				});
+				vistaU.btnEliminar.addActionListener(new ActionListener() {
+					
+					@Override
+					public void actionPerformed(ActionEvent e) {
+						modeloClientes.delete(Long.parseLong(vistaU.textFieldId.getText()));
+						
+					}
+				});
 			}
 		});
 		
 	}
 	private void listenerBuscarVideoMenu() {
-		vistaPrincipal.buscarVideoMenu.addActionListener(new ActionListener() {
+
+		
+	vistaPrincipal.buscarClienteMenu.addActionListener(new ActionListener() {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				VistaUVid vistaUVid = new VistaUVid();
+				vistaUVid = new VistaUVid();
 				vistaUVid.setVisible(true);
 				vistaUVid.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+				vistaUVid.btnBuscar.addActionListener(new ActionListener() {
+					
+					@Override
+					public void actionPerformed(ActionEvent e) {
+						Cliente cliente = modeloClientes.mostrarPorId(Long.parseLong(vistaU.textFieldId.getText()));
+						
+						vistaU.textFieldNombre.setText(cliente.getNombre());
+						vistaU.textFieldApellido.setText(cliente.getApellido());
+						vistaU.textFieldDireccion.setText(cliente.getDireccion());
+						vistaU.textFieldDni.setText(cliente.getDNI());
+						vistaU.textFieldFecha.setText(String.valueOf(cliente.getFecha()));
+						
+					}
+				});
+				vistaU.btnEnviarDatos.addActionListener(new ActionListener() {
+					
+					@Override
+					public void actionPerformed(ActionEvent e) {
+						Cliente cliente = new Cliente();
+						cliente.setID(Long.parseLong(vistaU.textFieldId.getText()));
+						cliente.setNombre(vistaU.textFieldNombre.getText());
+						cliente.setApellido(vistaU.textFieldApellido.getText());
+						cliente.setDireccion(vistaU.textFieldDireccion.getText());
+						cliente.setDNI(vistaU.textFieldDni.getText());
+						cliente.setFecha(Date.valueOf(vistaU.textFieldFecha.getText()));
+						
+						modeloClientes.update(cliente);
+						
+					}
+				});
+				vistaU.btnEliminar.addActionListener(new ActionListener() {
+					
+					@Override
+					public void actionPerformed(ActionEvent e) {
+						modeloClientes.delete(Long.parseLong(vistaU.textFieldId.getText()));
+						
+					}
+				});
 			}
 		});
+		
 		
 	}
 
