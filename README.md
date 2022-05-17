@@ -1,4 +1,4 @@
-# UD22-Patr-nMVC-2
+# UD22-PatrónMVC-2
 
 ## MVC - Model View Controller
 
